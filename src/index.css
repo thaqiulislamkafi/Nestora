@@ -1,0 +1,45 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
+.urbanist-font {
+  font-family: "Urbanist", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.inter-font {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  
+  font-style: normal;
+}
+
+.Button {
+  @apply  border border-[#fceb00] 
+  text-[#556b12] 
+  rounded-xl 
+  font-semibold
+  px-4 py-2 mx-1 
+  transition-colors duration-300
+  hover:bg-[#fceb00] hover:text-white
+  focus:outline-none focus:ring-2 focus:ring-[#CAEB66]  
+}
+
+.Error {
+  @apply bg-[#CAEB66] w-fit px-5 py-1 text-xs rounded-3xl my-3 font-semibold
+}
+
+.cover-title {
+  @apply  text-3xl lg:text-5xl md:text-3xl font-bold pt-58  leading-10.5 
+}
+
+.cover-description {
+  @apply text-lg md:text-xl  mt-3 lg:w-[33.10vw] text-gray-200
+}
+
+.cover-button {
+  @apply text-white border-2  font-semibold mt-6 px-8 transition-all hover:scale-105 duration-700
+}
