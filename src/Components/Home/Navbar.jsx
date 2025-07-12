@@ -10,7 +10,7 @@ const Navbar = () => {
     const navLinkStyle = ({ isActive }) => {
         return {
             fontWeight: isActive ? "800" : "600",
-            color: isActive ? "#5B6A2E" : "#334155",
+            color: isActive ? "white" : "#334155",
             // backgroundColor: isActive ? "#e6d70c" : "transparent",
             borderRadius: "1.3rem",
             padding: "0.5rem 1rem",
@@ -66,8 +66,8 @@ const Navbar = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/services" style={navLinkStyle}>
-                            Properties
+                        <NavLink to="/allProperties" style={navLinkStyle}>
+                            All Properties
                         </NavLink>
                     </li>
                     <li>

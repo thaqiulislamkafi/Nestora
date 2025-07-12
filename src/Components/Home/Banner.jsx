@@ -4,6 +4,7 @@ import { Autoplay } from 'swiper/modules';
 import { Typewriter } from 'react-simple-typewriter';
 import 'swiper/css';
 import 'swiper/css/autoplay';
+import { Zoom } from 'react-awesome-reveal';
 
 const slides = [
   {
@@ -28,47 +29,51 @@ const slides = [
 
 const Banner = () => {
   return (
-    <div className="my-20 rounded-3xl">
-      <Swiper
-        modules={[Autoplay]}
-        autoplay={{ delay: 7000, disableOnInteraction: false }}
-        loop={true}
-      >
-        {slides.map((slide, index) => (
-          <SwiperSlide key={index}>
-            <div
-              className={`banner Slide-${index + 1} relative h-screen max-h-[700px] rounded-3xl bg-cover bg-center sora-font`}
-              style={{
-                backgroundImage: `linear-gradient(to top, black, transparent), url(${slide.image})`,
-              }}
-            >
-              <div className="text-white w-[80.94vw] mx-auto ">
-                <p className="cover-title text-4xl md:text-5xl font-bold mb-4">
-                  {slide.title}{' '}
-                  <span className="text-[#fceb00] font-extrabold">
-                    <Typewriter
-                      words={slide.typewriterWords}
-                      loop={true}
-                      cursor
-                      cursorStyle="_"
-                      typeSpeed={100}
-                      deleteSpeed={60}
-                      delaySpeed={1500}
-                    />
-                  </span>
-                </p>
-                <p className="cover-description max-w-2xl mb-6">
-                  {slide.description}
-                </p>
-                <button className="Button cover-button text-black px-6 py-1 rounded-xl font-semibold hover:bg-lime-300 transition">
-                  Explore
-                </button>
+
+    <Zoom cascade triggerOnce damping={1.01}>
+      <div className="my-20 rounded-3xl">
+        <Swiper
+          modules={[Autoplay]}
+          autoplay={{ delay: 7000, disableOnInteraction: false }}
+          loop={true}
+        >
+          {slides.map((slide, index) => (
+            <SwiperSlide key={index}>
+              <div
+                className={`banner Slide-${index + 1} relative h-screen max-h-[700px] rounded-3xl bg-cover bg-center sora-font`}
+                style={{
+                  backgroundImage: `linear-gradient(to top, black, transparent), url(${slide.image})`,
+                }}
+              >
+                <div className="text-white w-[80.94vw] mx-auto ">
+                  <p className="cover-title text-4xl md:text-5xl font-bold mb-4">
+                    {slide.title}{' '}
+                    <span className="text-[#fceb00] font-extrabold">
+                      <Typewriter
+                        words={slide.typewriterWords}
+                        loop={true}
+                        cursor
+                        cursorStyle="_"
+                        typeSpeed={100}
+                        deleteSpeed={60}
+                        delaySpeed={1500}
+                      />
+                    </span>
+                  </p>
+                  <p className="cover-description max-w-2xl mb-6">
+                    {slide.description}
+                  </p>
+                  <button className="Button cover-button text-black px-6 py-1 rounded-xl font-semibold hover:bg-lime-300 transition">
+                    Explore
+                  </button>
+                </div>
               </div>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+    </Zoom>
+
   );
 };
 
