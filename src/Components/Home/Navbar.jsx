@@ -1,8 +1,9 @@
 import React, { use } from "react";
 import { Link, NavLink } from "react-router";
-// import { AuthContext } from "../Provider/AuthProvider";
-// import { signOut } from "firebase/auth";
-// import { auth } from "../Firebase/Firebase";
+import { signOut } from "firebase/auth";
+import { auth } from "../Firebase/authentication";
+import { AuthContext } from "../Provider/AuthProvider";
+
 
 const Navbar = () => {
     // Style for active and normal links
@@ -22,27 +23,26 @@ const Navbar = () => {
         };
     };
 
-    // const { currentUser } = use(AuthContext);
-    const currentUser = '' ;
+    const { currentUser } = use(AuthContext);
 
     const defaultLogo = 'https://img.icons8.com/?size=80&id=ckaioC1qqwCu&format=png'
 
-   
+
     const handleSignOut = async () => {
         try {
-        //   await signOut(auth);
-          console.log('User signed out successfully');
-         
+            await signOut(auth);
+            console.log('User signed out successfully');
+
         } catch (error) {
-          console.error('Error signing out:', error.message);
+            console.error('Error signing out:', error.message);
         }
-      };
-    
-      const time = new Date().toLocaleTimeString();
-      console.log(time)
+    };
+
+    const time = new Date().toLocaleTimeString();
+    console.log(time)
 
     return (
-        <div className="navbar bg-base-100 rounded-2xl  px-4 md:px-8 urbanist-font py-6">
+        <div className="navbar bg-base-100 rounded-2xl urbanist-font py-8 px-0">
             {/* Nav-first - Logo and App Name */}
             <div className="navbar-start">
                 <NavLink to="/" className="flex items-center ">
@@ -80,7 +80,7 @@ const Navbar = () => {
                             About Us
                         </NavLink>
                     </li>
-            
+
                     <li>
                         <NavLink to="/beArider" style={navLinkStyle}>
                             Be a Agent
@@ -94,11 +94,14 @@ const Navbar = () => {
 
                 {
                     currentUser ?
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-1">
                             <Link to={'dashboard/myParcels'}>
-                            <div className="p-1 bg-[#e6d70c] rounded-full">
-                                <img className="w-9 rounded-full" src={currentUser.photoURL ? currentUser.photoURL : defaultLogo} alt="" />
-                            </div>
+                                <div className="flex items-center gap-2 Button">
+                                    <div className=" bg-[#e6d70c] rounded-full">
+                                        <img className="w-5 rounded-full" src={currentUser.photoURL ? currentUser.photoURL : defaultLogo} alt="" />
+                                    </div>
+                                    <span className="font-semibold">Dashboard</span>
+                                </div>
                             </Link>
                             <Link onClick={handleSignOut} className="Button bg-[#fceb00]">Sign Out</Link>
                         </div> :
