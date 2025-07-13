@@ -1,48 +1,69 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { Bounce } from 'react-awesome-reveal';
 import Marquee from 'react-fast-marquee';
 import { FaUserCircle, FaStar, FaQuoteLeft } from 'react-icons/fa';
 import { GiModernCity } from 'react-icons/gi';
+import useAxios from '../Hooks/useAxios';
+import Loading from '../SharedElement/Loading';
+import Error from '../SharedElement/Error';
 
 const MarqueeReview = () => {
+
+  const axiosSecure = useAxios() ;
+
   // Sample review data - you'll replace this with data from your API
-  const reviews = [
-    {
-      id: 1,
-      reviewerName: "John Doe",
-      reviewText: "Absolutely loved the property! The location was perfect and the amenities were top-notch.",
-      propertyTitle: "Luxury Apartment in Downtown",
-      rating: 5,
-    },
-    {
-      id: 2,
-      reviewerName: "Sarah Smith",
-      reviewText: "Great experience with Nestora. Found my dream home quickly and the process was smooth.",
-      propertyTitle: "Modern Villa with Ocean View",
-      rating: 4,
-    },
-    {
-      id: 3,
-      reviewerName: "Michael Johnson",
-      reviewText: "The team was very professional and helped me find exactly what I was looking for.",
-      propertyTitle: "Cozy Studio in the City Center",
-      rating: 5,
-    },
-    {
-      id: 4,
-      reviewerName: "Emily Wilson",
-      reviewText: "Excellent service and beautiful properties to choose from. Highly recommend!",
-      propertyTitle: "Spacious Family Home",
-      rating: 5,
-    },
-    {
-      id: 5,
-      reviewerName: "David Brown",
-      reviewText: "The property exceeded my expectations. Everything was as described and more.",
-      propertyTitle: "Penthouse with Rooftop Garden",
-      rating: 4,
-    },
-  ];
+  // const reviews = [
+  //   {
+  //     id: 1,
+  //     reviewerName: "John Doe",
+  //     reviewText: "Absolutely loved the property! The location was perfect and the amenities were top-notch.",
+  //     propertyTitle: "Luxury Apartment in Downtown",
+  //     rating: 5,
+  //   },
+  //   {
+  //     id: 2,
+  //     reviewerName: "Sarah Smith",
+  //     reviewText: "Great experience with Nestora. Found my dream home quickly and the process was smooth.",
+  //     propertyTitle: "Modern Villa with Ocean View",
+  //     rating: 4,
+  //   },
+  //   {
+  //     id: 3,
+  //     reviewerName: "Michael Johnson",
+  //     reviewText: "The team was very professional and helped me find exactly what I was looking for.",
+  //     propertyTitle: "Cozy Studio in the City Center",
+  //     rating: 5,
+  //   },
+  //   {
+  //     id: 4,
+  //     reviewerName: "Emily Wilson",
+  //     reviewText: "Excellent service and beautiful properties to choose from. Highly recommend!",
+  //     propertyTitle: "Spacious Family Home",
+  //     rating: 5,
+  //   },
+  //   {
+  //     id: 5,
+  //     reviewerName: "David Brown",
+  //     reviewText: "The property exceeded my expectations. Everything was as described and more.",
+  //     propertyTitle: "Penthouse with Rooftop Garden",
+  //     rating: 4,
+  //   },
+  // ];
+
+  const { data : reviews, isLoading,error } =  useQuery({
+    queryKey : ['reviews'],
+    queryFn : async()=>{
+        const res = await axiosSecure('/reviews') ;
+        return res.data ;
+    }
+  })
+
+  if(isLoading)
+    return <Loading/> 
+
+  if(error)
+    return <Error message={error.message}/>
 
   return (
     <Bounce cascade damping={0.09} triggerOnce>
@@ -97,7 +118,7 @@ const MarqueeReview = () => {
 
                 <div className="mb-4">
                   <FaQuoteLeft className="text-gray-300 text-xl mb-2" />
-                  <p className="text-gray-600 italic">{review.reviewText}</p>
+                  <p className="text-gray-600 italic">{review.description}</p>
                 </div>
 
                 <div className="flex items-center text-sm text-gray-500">

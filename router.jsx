@@ -19,6 +19,10 @@ export const router = createBrowserRouter([
                 path : '/allProperties',
                 element : <AllProperties/>
             },
+            {
+                path : '/propertyDetails/:propertyId',
+                element : <AllProperties/>
+            },
             
             
         ]

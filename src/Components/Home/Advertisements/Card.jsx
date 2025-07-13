@@ -1,5 +1,6 @@
 import { FaCheckCircle, FaPhone, FaEnvelope, FaMapMarkerAlt, FaRegUserCircle } from 'react-icons/fa';
 import { Fade } from 'react-awesome-reveal';
+import { Link } from 'react-router';
 
 const Card = ({ value, title }) => {
 
@@ -50,7 +51,7 @@ const Card = ({ value, title }) => {
             <p className="text-gray-700 font-semibold">{ad.priceRange}</p>
           </div>
 
-          <button className='btn btn-sm rounded-2xl'>View Details</button>
+          <Link to={`/propertyDetails/${ad._id}`} className='btn btn-sm rounded-2xl'>View Details</Link>
 
           {/* Agent Info */}
 
