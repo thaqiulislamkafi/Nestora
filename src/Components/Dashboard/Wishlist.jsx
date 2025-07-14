@@ -11,7 +11,7 @@ const Wishlist = () => {
     const axiosSecure = useAxios();
     const {currentUser} = use(AuthContext) ;
 
-    const { data: wishlist, isLoading} = useQuery({
+    const { data: wishlist, isLoading,refetch} = useQuery({
         queryKey: ['wishlist'],
         queryFn: async () => {
             
@@ -22,9 +22,10 @@ const Wishlist = () => {
     });
 
     const handleReject = async (propertyId) => {
+        console.log(propertyId)
         try {
-            await axiosSecure.delete(`/api/users/wishlist/${propertyId}`);
-            // Optimistic update or refetch
+            await axiosSecure.delete(`/deleteWish?email=${currentUser?.email}`,{data: { propertyId }});
+            refetch() ;
         } catch (error) {
             console.error("Error removing from wishlist:", error);
         }
