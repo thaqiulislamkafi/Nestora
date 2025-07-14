@@ -4,6 +4,9 @@ import Body from "./src/Components/Home/Body";
 import AllProperties from "./src/Components/allProperties/AllProperties";
 import Login from "./src/Components/Registration/Login";
 import SignUp from "./src/Components/Registration/SignUp";
+import PropertyDetails from "./src/Components/PropertyDetails/PropertyDetails";
+import Dashboard from "./src/Components/Dashboard/Dashboard";
+import MyProfile from "./src/Components/Dashboard/MyProfile";
 
 
 export const router = createBrowserRouter([
@@ -21,7 +24,7 @@ export const router = createBrowserRouter([
             },
             {
                 path : '/propertyDetails/:propertyId',
-                element : <AllProperties/>
+                element : <PropertyDetails/>
             },
             
             
@@ -35,6 +38,16 @@ export const router = createBrowserRouter([
     {
         path : '/signup',
         element : <SignUp/>
+    },
+    {
+        path : 'dashboard',
+        element : <Dashboard/>,
+        children : [
+            {
+                path : 'myProfile',
+                element : <MyProfile/>
+            }
+        ]
     }
     
 ])

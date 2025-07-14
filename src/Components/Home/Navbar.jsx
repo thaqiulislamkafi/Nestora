@@ -95,7 +95,7 @@ const Navbar = () => {
                 {
                     currentUser ?
                         <div className="flex items-center gap-1">
-                            <Link to={'dashboard/myParcels'}>
+                            <Link to={'dashboard/myProfile'}>
                                 <div className="flex items-center gap-2 Button">
                                     <div className=" bg-[#e6d70c] rounded-full">
                                         <img className="w-5 rounded-full" src={currentUser.photoURL ? currentUser.photoURL : defaultLogo} alt="" />
