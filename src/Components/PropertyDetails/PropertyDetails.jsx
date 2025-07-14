@@ -40,7 +40,7 @@ const PropertyDetails = () => {
             return result.data ;
         },
         onSuccess : ()=>{
-            queryClient.invalidateQueries(['userWishlist'])
+            queryClient.invalidateQueries(['wishlist'])
         }
         
     })

@@ -1,6 +1,6 @@
 import React, { use } from 'react';
 import { NavLink, useNavigate } from 'react-router';
-import { FaHome, FaBox, FaMotorcycle, FaUserClock, FaHistory, FaSignOutAlt, FaUsers, FaUserShield, FaBoxOpen, FaClipboardCheck, FaMoneyBill, FaSearchLocation, FaUser, } from 'react-icons/fa';
+import { FaHome, FaBox, FaMotorcycle, FaUserClock, FaHistory, FaSignOutAlt, FaUsers, FaUserShield, FaBoxOpen, FaClipboardCheck, FaMoneyBill, FaSearchLocation, FaUser, FaHeart, FaStar, } from 'react-icons/fa';
 import { AuthContext } from '../Provider/AuthProvider';
 // import UseUserRole from '../Hooks/UseUserRole';
 
@@ -79,6 +79,45 @@ const NavSideBar = () => {
                 >
                     <FaHistory className="mr-3" />
                     <span>Payment History</span>
+                </NavLink>
+
+                <NavLink
+                    to="/dashboard/wishlist"
+                    className={({ isActive }) =>
+                        `flex items-center p-3 rounded-lg transition-colors ${isActive
+                            ? 'bg-[#fceb00] text-gray-900 font-medium'
+                            : 'hover:bg-gray-100 text-gray-700'
+                        }`
+                    }
+                >
+                    <FaHeart className="mr-3" />
+                    <span>Wishlist</span>
+                </NavLink>
+
+                <NavLink
+                    to="/dashboard/property-bought"
+                    className={({ isActive }) =>
+                        `flex items-center p-3 rounded-lg transition-colors ${isActive
+                            ? 'bg-[#fceb00] text-gray-900 font-medium'
+                            : 'hover:bg-gray-100 text-gray-700'
+                        }`
+                    }
+                >
+                    <FaHome className="mr-3" />
+                    <span>Property Bought</span>
+                </NavLink>
+
+                <NavLink
+                    to="/dashboard/my-reviews"
+                    className={({ isActive }) =>
+                        `flex items-center p-3 rounded-lg transition-colors ${isActive
+                            ? 'bg-[#fceb00] text-gray-900 font-medium'
+                            : 'hover:bg-gray-100 text-gray-700'
+                        }`
+                    }
+                >
+                    <FaStar className="mr-3" />
+                    <span>My Reviews</span>
                 </NavLink>
 
                 {

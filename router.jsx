@@ -7,6 +7,7 @@ import SignUp from "./src/Components/Registration/SignUp";
 import PropertyDetails from "./src/Components/PropertyDetails/PropertyDetails";
 import Dashboard from "./src/Components/Dashboard/Dashboard";
 import MyProfile from "./src/Components/Dashboard/MyProfile";
+import Wishlist from "./src/Components/Dashboard/Wishlist";
 
 
 export const router = createBrowserRouter([
@@ -46,7 +47,11 @@ export const router = createBrowserRouter([
             {
                 path : 'myProfile',
                 element : <MyProfile/>
-            }
+            },
+            {
+                path : 'wishlist',
+                element : <Wishlist/>
+            },
         ]
     }
     
