@@ -8,6 +8,7 @@ import PropertyDetails from "./src/Components/PropertyDetails/PropertyDetails";
 import Dashboard from "./src/Components/Dashboard/Dashboard";
 import MyProfile from "./src/Components/Dashboard/MyProfile";
 import Wishlist from "./src/Components/Dashboard/Wishlist";
+import MakeOffer from "./src/Components/Dashboard/MakeOffer";
 
 
 export const router = createBrowserRouter([
@@ -51,6 +52,10 @@ export const router = createBrowserRouter([
             {
                 path : 'wishlist',
                 element : <Wishlist/>
+            },
+            {
+                path : 'makeOffer/:propertyId',
+                element : <MakeOffer/>
             },
         ]
     }

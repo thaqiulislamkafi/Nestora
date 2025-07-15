@@ -1,16 +1,17 @@
 import React, { use } from 'react';
 import { NavLink, useNavigate } from 'react-router';
-import { FaHome, FaBox, FaMotorcycle, FaUserClock, FaHistory, FaSignOutAlt, FaUsers, FaUserShield, FaBoxOpen, FaClipboardCheck, FaMoneyBill, FaSearchLocation, FaUser, FaHeart, FaStar, } from 'react-icons/fa';
+import { FaHome, FaHistory, FaSignOutAlt, FaBoxOpen, FaUser, FaHeart, FaStar, FaPlusCircle, FaCheckCircle, FaHandshake, FaTasks, FaUsersCog, FaStarHalfAlt, } from 'react-icons/fa';
 import { AuthContext } from '../Provider/AuthProvider';
+import UseUserRole from '../Hooks/useUserRole';
 // import UseUserRole from '../Hooks/UseUserRole';
 
 const NavSideBar = () => {
     const navigate = useNavigate();
 
     const { currentUser } = use(AuthContext);
-    // const { role } = UseUserRole();
+    const { role } = UseUserRole();
 
-    const role = 'user';
+
 
     const handleLogout = () => {
         // Add your logout logic here
@@ -56,6 +57,7 @@ const NavSideBar = () => {
             <div className='divider my-2'></div>
 
             {/* Navigation Links */}
+
             <div className="flex-1 px-7 space-y-2">
                 <NavLink
                     to="/dashboard/myProfile"
@@ -69,97 +71,27 @@ const NavSideBar = () => {
                     <FaUser className="mr-3" />
                     <span>My Profile</span>
                 </NavLink>
-                <NavLink
-                    to="/dashboard/payment-history"
-                    className={({ isActive }) =>
-                        `flex items-center p-3 rounded-lg transition-colors ${isActive
-                            ? 'bg-[#fceb00] text-gray-900 font-medium'
-                            : 'hover:bg-gray-100 text-gray-700'}`
-                    }
-                >
-                    <FaHistory className="mr-3" />
-                    <span>Payment History</span>
-                </NavLink>
 
-                <NavLink
-                    to="/dashboard/wishlist"
-                    className={({ isActive }) =>
-                        `flex items-center p-3 rounded-lg transition-colors ${isActive
-                            ? 'bg-[#fceb00] text-gray-900 font-medium'
-                            : 'hover:bg-gray-100 text-gray-700'
-                        }`
-                    }
-                >
-                    <FaHeart className="mr-3" />
-                    <span>Wishlist</span>
-                </NavLink>
-
-                <NavLink
-                    to="/dashboard/property-bought"
-                    className={({ isActive }) =>
-                        `flex items-center p-3 rounded-lg transition-colors ${isActive
-                            ? 'bg-[#fceb00] text-gray-900 font-medium'
-                            : 'hover:bg-gray-100 text-gray-700'
-                        }`
-                    }
-                >
-                    <FaHome className="mr-3" />
-                    <span>Property Bought</span>
-                </NavLink>
-
-                <NavLink
-                    to="/dashboard/my-reviews"
-                    className={({ isActive }) =>
-                        `flex items-center p-3 rounded-lg transition-colors ${isActive
-                            ? 'bg-[#fceb00] text-gray-900 font-medium'
-                            : 'hover:bg-gray-100 text-gray-700'
-                        }`
-                    }
-                >
-                    <FaStar className="mr-3" />
-                    <span>My Reviews</span>
-                </NavLink>
+                {/* Navigation Links for user*/}
 
                 {
-                    (role === 'admin') && <>
+                    (role === 'user') &&
+                    <div>
+
                         <NavLink
-                            to="/dashboard/users"
+                            to="/dashboard/payment-history"
                             className={({ isActive }) =>
                                 `flex items-center p-3 rounded-lg transition-colors ${isActive
                                     ? 'bg-[#fceb00] text-gray-900 font-medium'
                                     : 'hover:bg-gray-100 text-gray-700'}`
                             }
                         >
-                            <FaUsers className="mr-3" />
-                            <span>Users</span>
+                            <FaHistory className="mr-3" />
+                            <span>Payment History</span>
                         </NavLink>
 
                         <NavLink
-                            to="/dashboard/active-riders"
-                            className={({ isActive }) =>
-                                `flex items-center p-3 rounded-lg transition-colors ${isActive
-                                    ? 'bg-[#fceb00] text-gray-900 font-medium'
-                                    : 'hover:bg-gray-100 text-gray-700'}`
-                            }
-                        >
-                            <FaMotorcycle className="mr-3" />
-                            <span>Active Riders</span>
-                        </NavLink>
-
-                        <NavLink
-                            to="/dashboard/pending-riders"
-                            className={({ isActive }) =>
-                                `flex items-center p-3 rounded-lg transition-colors ${isActive
-                                    ? 'bg-[#fceb00] text-gray-900 font-medium'
-                                    : 'hover:bg-gray-100 text-gray-700'}`
-                            }
-                        >
-                            <FaUserClock className="mr-3" />
-                            <span>Pending Riders</span>
-                        </NavLink>
-
-                        <NavLink
-                            to="/dashboard/assigned-riders"
+                            to="/dashboard/wishlist"
                             className={({ isActive }) =>
                                 `flex items-center p-3 rounded-lg transition-colors ${isActive
                                     ? 'bg-[#fceb00] text-gray-900 font-medium'
@@ -167,19 +99,96 @@ const NavSideBar = () => {
                                 }`
                             }
                         >
-                            <FaUserShield className="mr-3" />
-                            <span>Assigned Riders</span>
+                            <FaHeart className="mr-3" />
+                            <span>Wishlist</span>
                         </NavLink>
+
+                        <NavLink
+                            to="/dashboard/property-bought"
+                            className={({ isActive }) =>
+                                `flex items-center p-3 rounded-lg transition-colors ${isActive
+                                    ? 'bg-[#fceb00] text-gray-900 font-medium'
+                                    : 'hover:bg-gray-100 text-gray-700'
+                                }`
+                            }
+                        >
+                            <FaHome className="mr-3" />
+                            <span>Property Bought</span>
+                        </NavLink>
+
+                        <NavLink
+                            to="/dashboard/my-reviews"
+                            className={({ isActive }) =>
+                                `flex items-center p-3 rounded-lg transition-colors ${isActive
+                                    ? 'bg-[#fceb00] text-gray-900 font-medium'
+                                    : 'hover:bg-gray-100 text-gray-700'
+                                }`
+                            }
+                        >
+                            <FaStar className="mr-3" />
+                            <span>My Reviews</span>
+                        </NavLink>
+
+                    </div>
+                }
+
+
+
+                {
+                    (role === 'admin') && <>
+
+                        <NavLink
+                            to="/dashboard/manageProperties"
+                            className={({ isActive }) =>
+                                `flex items-center p-3 rounded-lg transition-colors ${isActive
+                                    ? 'bg-[#fceb00] text-gray-900 font-medium'
+                                    : 'hover:bg-gray-100 text-gray-700'
+                                }`
+                            }
+                        >
+                            <FaTasks className="mr-3" />
+                            <span>Manage Properties</span>
+                        </NavLink>
+
+                        <NavLink
+                            to="/dashboard/manageUsers"
+                            className={({ isActive }) =>
+                                `flex items-center p-3 rounded-lg transition-colors ${isActive
+                                    ? 'bg-[#fceb00] text-gray-900 font-medium'
+                                    : 'hover:bg-gray-100 text-gray-700'
+                                }`
+                            }
+                        >
+                            <FaUsersCog className="mr-3" />
+                            <span>Manage Users</span>
+                        </NavLink>
+
+                        <NavLink
+                            to="/dashboard/manageReviews"
+                            className={({ isActive }) =>
+                                `flex items-center p-3 rounded-lg transition-colors ${isActive
+                                    ? 'bg-[#fceb00] text-gray-900 font-medium'
+                                    : 'hover:bg-gray-100 text-gray-700'
+                                }`
+                            }
+                        >
+                            <FaStarHalfAlt className="mr-3" />
+                            <span>Manage Reviews</span>
+                        </NavLink>
+
+
 
                     </>
                 }
 
                 {
 
-                    (role === 'rider') && <>
+                    (role === 'agent') && <>
+
+                        
 
                         <NavLink
-                            to="/dashboard/pending-deliveries"
+                            to="/dashboard/add-property"
                             className={({ isActive }) =>
                                 `flex items-center p-3 rounded-lg transition-colors ${isActive
                                     ? 'bg-[#fceb00] text-gray-900 font-medium'
@@ -187,12 +196,12 @@ const NavSideBar = () => {
                                 }`
                             }
                         >
-                            <FaBoxOpen className="mr-3" />
-                            <span>Pending Deliveries</span>
+                            <FaPlusCircle className="mr-3" />
+                            <span>Add Property</span>
                         </NavLink>
 
                         <NavLink
-                            to="/dashboard/completed-deliveries"
+                            to="/dashboard/my-properties"
                             className={({ isActive }) =>
                                 `flex items-center p-3 rounded-lg transition-colors ${isActive
                                     ? 'bg-[#fceb00] text-gray-900 font-medium'
@@ -200,12 +209,12 @@ const NavSideBar = () => {
                                 }`
                             }
                         >
-                            <FaClipboardCheck className="mr-3" />
-                            <span>Completed Deliveries</span>
+                            <FaHome className="mr-3" />
+                            <span>My Added Properties</span>
                         </NavLink>
 
                         <NavLink
-                            to="/dashboard/my-earnings"
+                            to="/dashboard/sold-properties"
                             className={({ isActive }) =>
                                 `flex items-center p-3 rounded-lg transition-colors ${isActive
                                     ? 'bg-[#fceb00] text-gray-900 font-medium'
@@ -213,9 +222,24 @@ const NavSideBar = () => {
                                 }`
                             }
                         >
-                            <FaMoneyBill className="mr-3" />
-                            <span>My Earnings</span>
+                            <FaCheckCircle className="mr-3" />
+                            <span>My Sold Properties</span>
                         </NavLink>
+
+                        <NavLink
+                            to="/dashboard/requested-properties"
+                            className={({ isActive }) =>
+                                `flex items-center p-3 rounded-lg transition-colors ${isActive
+                                    ? 'bg-[#fceb00] text-gray-900 font-medium'
+                                    : 'hover:bg-gray-100 text-gray-700'
+                                }`
+                            }
+                        >
+                            <FaHandshake className="mr-3" />
+                            <span>Requested Properties</span>
+                        </NavLink>
+
+
                     </>
                 }
 

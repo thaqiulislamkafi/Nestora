@@ -5,11 +5,13 @@ import useAxios from '../Hooks/useAxios';
 import Loading from '../SharedElement/Loading';
 import { use } from 'react';
 import { AuthContext } from '../Provider/AuthProvider';
+import { useNavigate } from 'react-router';
 
 const Wishlist = () => {
 
     const axiosSecure = useAxios();
     const {currentUser} = use(AuthContext) ;
+    const navigate = useNavigate() ;
 
     const { data: wishlist, isLoading,refetch} = useQuery({
         queryKey: ['wishlist'],
@@ -20,6 +22,8 @@ const Wishlist = () => {
         },
         
     });
+
+    
 
     const handleReject = async (propertyId) => {
         console.log(propertyId)
@@ -32,8 +36,7 @@ const Wishlist = () => {
     };
 
     const handleMakeOffer = (propertyId) => {
-        // Implement offer functionality
-        console.log("Making offer for property:", propertyId);
+        navigate(`/dashboard/makeOffer/${propertyId}`)
     };
 
     if (isLoading) {

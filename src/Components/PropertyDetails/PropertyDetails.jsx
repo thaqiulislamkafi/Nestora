@@ -18,13 +18,12 @@ const PropertyDetails = () => {
     const Nestora_Outlet = 'my-10 p-5 md:p-7 border-2 border-gray-200 rounded-xl flex flex-col md:flex-row md:items-center gap-8 font-medium';
 
     const { data, isLoading, error } = useQuery({
-        queryKey: ['property'],
+        queryKey: ['property',propertyId],
         queryFn: async () => {
             const res = await axiosSecure(`/propertyDetails/${propertyId}`);
             return res.data;
         }
     })
-
 
     const property = data?.result || []
     const reviews = data?.reviews || []
