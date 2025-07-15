@@ -1,5 +1,4 @@
 import { useState, useEffect, use } from 'react';
-import axios from 'axios';
 import { FaEdit, FaTrash, FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
@@ -7,6 +6,7 @@ import { AuthContext } from '../Provider/AuthProvider';
 import useAxios from '../Hooks/useAxios';
 import Error from '../SharedElement/Error';
 import Loading from '../SharedElement/Loading';
+import { Link } from 'react-router';
 
 const AddedProperties = () => {
   const queryClient = useQueryClient();
@@ -28,7 +28,7 @@ const AddedProperties = () => {
   
   const { mutate: deleteProperty } = useMutation({
     mutationFn: async (id) => {
-      await axios.delete(`/api/properties/${id}`);
+      await axiosSecure.delete(`/propertyDelete/${id}`);
     },
     onSuccess: () => {
       queryClient.invalidateQueries(['agentProperties']);
@@ -44,7 +44,7 @@ const AddedProperties = () => {
 
   const { mutate: updateProperty } = useMutation({
     mutationFn: async (updatedProperty) => {
-      const { data } = await axios.put(
+      const { data } = await axiosSecure.put(
         `/api/properties/${updatedProperty._id}`,
         updatedProperty
       );
@@ -145,11 +145,11 @@ const AddedProperties = () => {
         {properties.map((property) => (
           <div
             key={property._id}
-            className="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden transition-all hover:shadow-lg"
+            className=" dark:bg-gray-800 rounded-xl shadow-xs overflow-hidden transition-all hover:shadow-lg shadow-amber-300"
           >
-            <div className="flex flex-col lg:flex-row h-full">
+            <div className="flex flex-col border-b border-[#e6d70c] lg:flex-row h-full  ">
               {/* Property Image */}
-              <div className="bg-gray-200 lg:p-4 rounded-xl lg:w-[29.13vw] h-auto">
+              <div className="  bg-transparent lg:p-4 rounded-xl lg:w-[29.13vw] h-auto">
                 <img
                   className="rounded-xl h-60 w-full object-cover"
                   src={property.image}
@@ -199,18 +199,18 @@ const AddedProperties = () => {
                   </p>
                 </div>
 
-                <div className="flex flex-wrap gap-2 mt-auto pt-4">
+                <div className="flex flex-wrap gap-2 pt-1">
                   {property.verified !== 'rejected' && (
-                    <button
-                      onClick={() => handleUpdate(property)}
-                      className="btn btn-sm bg-blue-500 hover:bg-blue-600 text-white rounded-lg flex items-center transition-colors"
+                    <Link
+                      to={`/dashboard/update-property/${property._id}`}
+                      className="btn btn-sm  rounded-lg flex"
                     >
                       <FaEdit className="mr-1" /> Update
-                    </button>
+                    </Link>
                   )}
                   <button
                     onClick={() => handleDelete(property._id)}
-                    className="btn btn-sm bg-red-500 hover:bg-red-600 text-white rounded-lg flex items-center transition-colors"
+                    className="btn btn-sm  rounded-lg flex "
                   >
                     <FaTrash className="mr-1" /> Delete
                   </button>
