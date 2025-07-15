@@ -37,7 +37,7 @@ const Registration = () => {
         formData.append('image', image);
 
         try {
-            const response = await axios.post(`https://api.imgbb.com/1/upload?key=a2434256f4b2b19ae95982c11d12f6e8`, formData)
+            const response = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_REACT_APP_IMGBB_KEY}`, formData)
 
             setImageURL(response.data.data.url)
         }

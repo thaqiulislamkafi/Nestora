@@ -9,6 +9,8 @@ import Dashboard from "./src/Components/Dashboard/Dashboard";
 import MyProfile from "./src/Components/Dashboard/MyProfile";
 import Wishlist from "./src/Components/Dashboard/Wishlist";
 import MakeOffer from "./src/Components/Dashboard/MakeOffer";
+import AddProperty from "./src/Components/Dashboard/AddProperty";
+import AddedProperties from "./src/Components/Dashboard/AddedProperties";
 
 
 export const router = createBrowserRouter([
@@ -56,6 +58,14 @@ export const router = createBrowserRouter([
             {
                 path : 'makeOffer/:propertyId',
                 element : <MakeOffer/>
+            },
+            {
+                path : 'add-property',
+                element : <AddProperty/>
+            },
+            {
+                path : 'my-properties',
+                element : <AddedProperties/>
             },
         ]
     }
