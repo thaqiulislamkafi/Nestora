@@ -1,4 +1,4 @@
-import { use, useEffect } from 'react';
+import { use, useState } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import { useForm } from 'react-hook-form';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
@@ -11,13 +11,17 @@ import useAxios from '../Hooks/useAxios';
 import Loading from '../SharedElement/Loading';
 import Error from '../SharedElement/Error';
 import { AuthContext } from '../Provider/AuthProvider';
+import axios from 'axios';
 
 const PropertyUpdateForm = () => {
+    
     const { propertyId } = useParams();
     const navigate = useNavigate();
     const queryClient = useQueryClient();
     const { currentUser } = use(AuthContext);
     const axiosSecure = useAxios();
+
+    const [imageUrl, setImageUrl] = useState('');
 
 
     const { data, isLoading, error } = useQuery({
@@ -31,13 +35,13 @@ const PropertyUpdateForm = () => {
 
     const property = data?.result || '';
 
-    const { register, handleSubmit, setValue, watch, formState: { errors, isDirty } } = useForm();
+    const { register, handleSubmit, formState: { errors, } } = useForm();
 
-   
+
     const { mutate: updateProperty, isPending: isUpdating } = useMutation({
         mutationFn: async (updatedData) => {
-            const { data } = await axiosSecure.put(
-                `/properties/${propertyId}`,
+            const { data } = await axiosSecure.patch(
+                `/updateProperty/${propertyId}`,
                 updatedData
             );
             return data;
@@ -55,31 +59,38 @@ const PropertyUpdateForm = () => {
         }
     });
 
-   
+
 
     const handleImageUpload = async (e) => {
         const file = e.target.files[0];
+        console.log(file)
         if (!file) return;
 
+
+        const formData = new FormData();
+        formData.append('image', file);
+
         try {
-            const formData = new FormData();
-            formData.append('image', file);
+            const response = await axios.post(
+                `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_REACT_APP_IMGBB_KEY}`,
+                formData
+            );
+            setImageUrl(response.data.data.url);
 
-            const { data } = await axiosSecure.post('/uploadImage', formData);
-            setValue('image', data.url, { shouldDirty: true });
-
-            Swal.fire({
-                icon: 'success', title: 'Image uploaded!', showConfirmButton: false, timer: 1500
-            });
         } catch (error) {
-            Swal.fire({
-                icon: 'error', title: 'Upload failed', text: error.response?.data?.message || 'Failed to upload image', showConfirmButton: false, timer: 1500
-            });
+            console.error('Image upload failed:', error);
+
         }
     };
 
     const onSubmit = (data) => {
-        updateProperty(data);
+        
+
+        const updatedProperty = {
+            ...data,
+            image : imageUrl
+        }
+       updateProperty(updatedProperty);
     };
 
     if (isLoading) return <Loading />;
@@ -103,7 +114,7 @@ const PropertyUpdateForm = () => {
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
 
                         {/* Property Image */}
-                        
+
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text flex items-center">
@@ -113,16 +124,15 @@ const PropertyUpdateForm = () => {
                             <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
                                 <div className="relative">
                                     <img
-                                        src={watch('image') || `${property.image}`}
+                                        src={imageUrl||property.image}
                                         alt="Property preview"
                                         className="w-full h-48 object-cover rounded-lg border"
                                     />
-                                 
+
                                 </div>
                                 <div>
                                     <label className="btn btn-outline cursor-pointer">
                                         <FaUpload className="mr-2" />
-                                        {watch('image') ? 'Change Image' : 'Upload Image'}
                                         <input
                                             type="file"
                                             className="hidden"
@@ -130,10 +140,8 @@ const PropertyUpdateForm = () => {
                                             accept="image/*"
                                         />
                                     </label>
-                                    <input type="hidden" {...register('image', { required: 'Image is required' })} />
-                                    {errors.image && (
-                                        <p className="mt-2 text-sm text-red-600">{errors.image.message}</p>
-                                    )}
+                                    <input type="hidden"  />
+                                    
                                 </div>
                             </div>
                         </div>
@@ -261,7 +269,7 @@ const PropertyUpdateForm = () => {
                             <button
                                 type="submit"
                                 className="btn btn-primary flex-grow sm:flex-grow-0"
-                                disabled={!isDirty || isUpdating}
+                                disabled={isUpdating}
                             >
                                 {isUpdating ? (
                                     <span className="flex items-center">

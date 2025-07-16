@@ -27,7 +27,7 @@ const AdvertisementSection = () => {
     }
 
     return (
-        <section className="py-12 px-4 sm:px-6 lg:px-8">
+        <section className="py-20 px-4 sm:px-6 lg:px-8 my-20">
             <div className="max-w-7xl mx-auto">
                 <Slide direction="down" triggerOnce>
                     <div className="text-center mb-12 inter-font">

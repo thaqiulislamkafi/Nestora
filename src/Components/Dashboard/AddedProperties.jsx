@@ -42,26 +42,6 @@ const AddedProperties = () => {
   });
 
 
-  const { mutate: updateProperty } = useMutation({
-    mutationFn: async (updatedProperty) => {
-      const { data } = await axiosSecure.put(
-        `/api/properties/${updatedProperty._id}`,
-        updatedProperty
-      );
-      return data;
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries(['agentProperties']);
-      Swal.fire({ icon: 'success',title: 'Success!', text: 'Property updated successfully',showConfirmButton: false,timer: 1500
-      });
-    },
-    onError: () => {
-      Swal.fire({icon: 'error',title: 'Error',text: 'Failed to update property',showConfirmButton: false, timer: 1500
-      });
-    }
-  });
-
-
   useEffect(() => {
     if (properties) {
       properties.forEach(property => {
@@ -81,44 +61,7 @@ const AddedProperties = () => {
     });
   };
 
-  const handleUpdate = (property) => {
-    Swal.fire({
-      title: 'Update Property',
-      html: `
-        <div class="text-left">
-          <div class="mb-4">
-            <label class="block text-gray-700 mb-2">Title</label>
-            <input id="swal-title" class="swal2-input" value="${property.title}">
-          </div>
-          <div class="mb-4">
-            <label class="block text-gray-700 mb-2">Location</label>
-            <input id="swal-location" class="swal2-input" value="${property.location}">
-          </div>
-          <div class="mb-4">
-            <label class="block text-gray-700 mb-2">Price Range</label>
-            <input id="swal-priceRange" class="swal2-input" value="${property.priceRange}">
-          </div>
-        </div>
-      `,
-      focusConfirm: false,
-      preConfirm: () => {
-        return {
-          title: document.getElementById('swal-title').value,
-          location: document.getElementById('swal-location').value,
-          priceRange: document.getElementById('swal-priceRange').value
-        };
-      }
-    }).then((result) => {
-      if (result.isConfirmed) {
-        updateProperty({
-          ...property,
-          title: result.value.title,
-          location: result.value.location,
-          priceRange: result.value.priceRange
-        });
-      }
-    });
-  };
+
 
   if (isLoading) {
     return <Loading/>;
