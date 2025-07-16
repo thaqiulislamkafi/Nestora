@@ -12,6 +12,10 @@ import MakeOffer from "./src/Components/Dashboard/MakeOffer";
 import AddProperty from "./src/Components/Dashboard/AddProperty";
 import AddedProperties from "./src/Components/Dashboard/AddedProperties";
 import UpdateProperty from "./src/Components/Dashboard/UpdateProperty";
+import Error from "./src/Components/Error/Error";
+import AgentRoute from "./src/Components/Route/AgentRoute";
+import Unauthorized from "./src/Components/Error/Unauthorized";
+import UserRoute from "./src/Components/Route/UserRoute";
 
 
 
@@ -19,6 +23,7 @@ export const router = createBrowserRouter([
     {
         path: '/',
        element : <Home/>,
+       hydrateFallbackElement : <Error/>,
         children: [
             {
                 index :true,
@@ -55,25 +60,33 @@ export const router = createBrowserRouter([
             },
             {
                 path : 'wishlist',
-                element : <Wishlist/>
+                element : <UserRoute><Wishlist/></UserRoute>
             },
             {
                 path : 'makeOffer/:propertyId',
-                element : <MakeOffer/>
+                element : <UserRoute><MakeOffer/></UserRoute>
             },
             {
                 path : 'add-property',
-                element : <AddProperty/>
+                element : <AgentRoute><AddProperty/></AgentRoute>
             },
             {
                 path : 'my-properties',
-                element : <AddedProperties/>
+                element : <AgentRoute><AddedProperties/></AgentRoute>
             },
             {
                 path : 'update-property/:propertyId',
-                element : <UpdateProperty/>
+                element : <AgentRoute><UpdateProperty/></AgentRoute>
             },
         ]
+    },
+    {
+        path : '*',
+        element : <Error/>
+    },
+    {
+        path : '/unauthorized',
+        element : <Unauthorized/>
     }
     
 ])
