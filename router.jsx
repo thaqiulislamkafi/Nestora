@@ -17,6 +17,7 @@ import AgentRoute from "./src/Components/Route/AgentRoute";
 import Unauthorized from "./src/Components/Error/Unauthorized";
 import UserRoute from "./src/Components/Route/UserRoute";
 import PropertyBought from "./src/Components/Dashboard/PropertyBought";
+import MyReviews from "./src/Components/Home/MyReviews";
 
 
 
@@ -70,6 +71,10 @@ export const router = createBrowserRouter([
             {
                 path : 'makeOffer/:propertyId',
                 element : <UserRoute><MakeOffer/></UserRoute>
+            },
+            {
+                path : 'my-reviews',
+                element : <UserRoute><MyReviews/></UserRoute>
             },
             {
                 path : 'add-property',

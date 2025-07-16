@@ -10,6 +10,7 @@ import { AuthContext } from '../Provider/AuthProvider';
 import Swal from 'sweetalert2';
 import { useForm } from 'react-hook-form';
 
+
 const PropertyDetails = () => {
 
     const axiosSecure = useAxios();
@@ -70,15 +71,20 @@ const PropertyDetails = () => {
     }
 
     const onSubmit = async (data) => {
+        setIsOpen(false)
         const reviewData = {
+
             reviewerName: currentUser.displayName,
             reviewerImage: currentUser.photoURL,
             reviewerEmail: currentUser.email,
             description: data.description,
             rating: 5,
-            propertyTitle : property.title
+            propertyTitle : property.title,
+            propertyId : property._id,
+            reviewTime : new Date().toISOString().split('T')[0]
         };
-        postMutation(reviewData) ;
+        postMutation.mutate(reviewData) ;
+        
     }
 
     if (isLoading)
@@ -173,7 +179,7 @@ const PropertyDetails = () => {
             <div className='border-2 border-gray-200 rounded-xl p-7 text-center my-20 mb-40'>
                 <p className='poppins text-xl lg:text-3xl my-1 font-bold'>Reviews</p>
                 <div className='border-t-2 border-dashed border-gray-200 my-6'></div>
-                <div className='my-10'>
+                <div className='my-10 flex flex-col md:flex-row'>
                     {reviews.map((review) => (
                         <div
                             key={review.id}
