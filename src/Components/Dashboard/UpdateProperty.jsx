@@ -14,7 +14,7 @@ import { AuthContext } from '../Provider/AuthProvider';
 import axios from 'axios';
 
 const PropertyUpdateForm = () => {
-    
+
     const { propertyId } = useParams();
     const navigate = useNavigate();
     const queryClient = useQueryClient();
@@ -33,7 +33,7 @@ const PropertyUpdateForm = () => {
         enabled: !!propertyId,
     });
 
-    const property = data?.result || '';
+    const property = data?.result || '' ;
 
     const { register, handleSubmit, formState: { errors, } } = useForm();
 

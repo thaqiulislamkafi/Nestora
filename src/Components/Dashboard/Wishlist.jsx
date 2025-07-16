@@ -6,30 +6,38 @@ import Loading from '../SharedElement/Loading';
 import { use } from 'react';
 import { AuthContext } from '../Provider/AuthProvider';
 import { useNavigate } from 'react-router';
+import Swal from 'sweetalert2';
 
 const Wishlist = () => {
 
     const axiosSecure = useAxios();
-    const {currentUser} = use(AuthContext) ;
-    const navigate = useNavigate() ;
+    const { currentUser } = use(AuthContext);
+    const navigate = useNavigate();
 
-    const { data: wishlist, isLoading,refetch} = useQuery({
+    const { data: wishlist, isLoading, refetch } = useQuery({
         queryKey: ['wishlist'],
         queryFn: async () => {
-            
+
             const { data } = await axiosSecure(`/wishlist?email=${currentUser?.email}`);
             return data;
         },
-        
+
     });
 
-    
+
 
     const handleReject = async (propertyId) => {
         console.log(propertyId)
         try {
-            await axiosSecure.delete(`/deleteWish?email=${currentUser?.email}`,{data: { propertyId }});
-            refetch() ;
+            const { data } = await axiosSecure.delete(`/deleteWish?email=${currentUser?.email}`, { data: { propertyId } });
+
+            if (data) {
+                refetch();
+                Swal.fire({
+                    icon: 'success', title: 'Success!', text: 'Property Deleted successfully', showConfirmButton: false, timer: 1500
+                });
+            }
+
         } catch (error) {
             console.error("Error removing from wishlist:", error);
         }
@@ -40,7 +48,7 @@ const Wishlist = () => {
     };
 
     if (isLoading) {
-        return <Loading/>;
+        return <Loading />;
     }
 
     if (!wishlist?.length) {
@@ -55,7 +63,7 @@ const Wishlist = () => {
         <div className="w-4/5 mx-auto py-6">
             <h1 className="text-xl lg:text-3xl text-center font-bold mb-3">My Wishlist</h1>
             <p className='max-w-lg text-center mx-auto mb-8'>Track the properties that caught your eye.
-            Your personalized wishlist is just a scroll away.</p>
+                Your personalized wishlist is just a scroll away.</p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {wishlist.map((property) => (

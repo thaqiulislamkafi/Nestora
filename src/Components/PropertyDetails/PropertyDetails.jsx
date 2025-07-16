@@ -7,18 +7,19 @@ import { Link, useParams } from 'react-router';
 import { FaQuoteLeft, FaStar } from 'react-icons/fa';
 import { GiModernCity } from 'react-icons/gi';
 import { AuthContext } from '../Provider/AuthProvider';
+import Swal from 'sweetalert2';
 
 const PropertyDetails = () => {
 
     const axiosSecure = useAxios();
     const { propertyId } = useParams()
-    const queryClient = useQueryClient() ;
-    const {currentUser} = use(AuthContext) ;
+    const queryClient = useQueryClient();
+    const { currentUser } = use(AuthContext);
 
     const Nestora_Outlet = 'my-10 p-5 md:p-7 border-2 border-gray-200 rounded-xl flex flex-col md:flex-row md:items-center gap-8 font-medium';
 
     const { data, isLoading, error } = useQuery({
-        queryKey: ['property',propertyId],
+        queryKey: ['property', propertyId],
         queryFn: async () => {
             const res = await axiosSecure(`/propertyDetails/${propertyId}`);
             return res.data;
@@ -29,22 +30,25 @@ const PropertyDetails = () => {
     const reviews = data?.reviews || []
 
     const updated = {
-        propertyId : propertyId,
-        email : currentUser.email
+        propertyId: propertyId,
+        email: currentUser.email
     }
 
     const mutation = useMutation({
-        mutationFn : async(updated)=>{
-            const result = await axiosSecure.post('/addwishlist',updated);
-            return result.data ;
+        mutationFn: async (updated) => {
+            const result = await axiosSecure.post('/addwishlist', updated);
+            return result.data;
         },
-        onSuccess : ()=>{
+        onSuccess: () => {
             queryClient.invalidateQueries(['wishlist'])
+            Swal.fire({
+                icon: 'success', title: 'Success!', text: 'Property wishlisted successfully', showConfirmButton: false, timer: 1500
+            });
         }
-        
+
     })
 
-    const handleWishlist = ()=>{
+    const handleWishlist = () => {
         mutation.mutate(updated)
     }
 
@@ -149,8 +153,8 @@ const PropertyDetails = () => {
                 </div>
 
                 <div className='border-t-2  border-gray-100 my-4'></div>
-                
-                <div  className=' my-3 btn bg-[#fceb00] w-full rounded-4xl'>Add Review</div>
+
+                <div className=' my-3 btn bg-[#fceb00] w-full rounded-4xl'>Add Review</div>
             </div>
 
         </div>
