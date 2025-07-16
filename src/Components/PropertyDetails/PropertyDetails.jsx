@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import React, { use } from 'react';
+import React, { use, useState } from 'react';
 import useAxios from '../Hooks/useAxios';
 import Loading from '../SharedElement/Loading';
 import Error from '../SharedElement/Error';
@@ -8,6 +8,7 @@ import { FaQuoteLeft, FaStar } from 'react-icons/fa';
 import { GiModernCity } from 'react-icons/gi';
 import { AuthContext } from '../Provider/AuthProvider';
 import Swal from 'sweetalert2';
+import { useForm } from 'react-hook-form';
 
 const PropertyDetails = () => {
 
@@ -15,6 +16,9 @@ const PropertyDetails = () => {
     const { propertyId } = useParams()
     const queryClient = useQueryClient();
     const { currentUser } = use(AuthContext);
+
+    const [isOpen, setIsOpen] = useState(false);
+    const { register, handleSubmit } = useForm();
 
     const Nestora_Outlet = 'my-10 p-5 md:p-7 border-2 border-gray-200 rounded-xl flex flex-col md:flex-row md:items-center gap-8 font-medium';
 
@@ -48,8 +52,33 @@ const PropertyDetails = () => {
 
     })
 
+    const postMutation = useMutation({
+        mutationFn : async(reviewData)=>{
+            const {data} = await axiosSecure.post('/postReview',reviewData)
+            return data ;
+        },
+        onSuccess : ()=>{
+            queryClient.invalidateQueries(['reviews']) ;
+            Swal.fire({
+                icon: 'success', title: 'Success!', text: 'Posted Review Successfully', showConfirmButton: false, timer: 1500
+            });
+        }
+    })
+
     const handleWishlist = () => {
         mutation.mutate(updated)
+    }
+
+    const onSubmit = async (data) => {
+        const reviewData = {
+            reviewerName: currentUser.displayName,
+            reviewerImage: currentUser.photoURL,
+            reviewerEmail: currentUser.email,
+            description: data.description,
+            rating: 5,
+            propertyTitle : property.title
+        };
+        postMutation(reviewData) ;
     }
 
     if (isLoading)
@@ -94,6 +123,50 @@ const PropertyDetails = () => {
 
                 </div>
             </div>
+
+            {isOpen && (
+                <dialog id="review_modal" className="modal modal-open">
+                    <div className="modal-box">
+                        <h3 className="font-bold text-lg mb-4">Add Your Review</h3>
+
+                        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                            {/* Reviewer Name */}
+                            <div>
+                                <label className="label">
+                                    <span className="label-text">Your Name</span>
+                                </label>
+                                <input
+                                    type="text"
+                                    value={currentUser?.displayName}
+                                    readOnly
+                                    className="input input-bordered w-full bg-gray-100"
+                                />
+                            </div>
+
+                            {/* Review Description */}
+                            <div>
+                                <label className="label">
+                                    <span className="label-text">Your Review</span>
+                                </label>
+                                <textarea
+                                    {...register("description", { required: true })}
+                                    className="textarea textarea-bordered w-full"
+                                    placeholder="Write your review here..."
+                                ></textarea>
+                            </div>
+
+                            <div className="modal-action flex justify-between items-center">
+                                <button type="submit" className="btn bg-[#fceb00] rounded-xl">
+                                    Submit
+                                </button>
+                                <button onClick={() => setIsOpen(false)} type="button" className="btn btn-ghost">
+                                    Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </dialog>
+            )}
 
             {/* ..............Property Reviews Bar.............. */}
 
@@ -154,7 +227,7 @@ const PropertyDetails = () => {
 
                 <div className='border-t-2  border-gray-100 my-4'></div>
 
-                <div className=' my-3 btn bg-[#fceb00] w-full rounded-4xl'>Add Review</div>
+                <div onClick={() => setIsOpen(true)} className=' my-3 btn bg-[#fceb00] w-full rounded-4xl'>Add Review</div>
             </div>
 
         </div>

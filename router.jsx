@@ -16,6 +16,7 @@ import Error from "./src/Components/Error/Error";
 import AgentRoute from "./src/Components/Route/AgentRoute";
 import Unauthorized from "./src/Components/Error/Unauthorized";
 import UserRoute from "./src/Components/Route/UserRoute";
+import PropertyBought from "./src/Components/Dashboard/PropertyBought";
 
 
 
@@ -61,6 +62,10 @@ export const router = createBrowserRouter([
             {
                 path : 'wishlist',
                 element : <UserRoute><Wishlist/></UserRoute>
+            },
+            {
+                path : 'property-bought',
+                element : <UserRoute><PropertyBought/></UserRoute>
             },
             {
                 path : 'makeOffer/:propertyId',
