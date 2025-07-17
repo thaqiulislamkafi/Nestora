@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 import {FaTrash,FaUserShield,FaUserTie,FaExclamationTriangle} from 'react-icons/fa';
 import useAxios from '../Hooks/useAxios';
 import Loading from '../SharedElement/Loading';
-import Error from '../Error/Error';
+import Error from '../SharedElement/Error';
 
 const ManageUsers = () => {
 
@@ -59,7 +59,7 @@ const ManageUsers = () => {
   });
 
   if(isLoading) return <Loading/>
-  if(error) return <Error/>
+  if(error) return <Error message={error.message}/>
 
   return (
     <div className="w-[90%] mx-auto my-10">

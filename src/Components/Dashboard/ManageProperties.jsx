@@ -3,7 +3,7 @@ import useAxios from '../Hooks/useAxios';
 import { FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import Loading from '../SharedElement/Loading';
-import Error from '../Error/Error';
+import Error from '../SharedElement/Error';
 
 const ManageProperties = () => {
   const axiosSecure = useAxios();
@@ -49,7 +49,7 @@ const ManageProperties = () => {
   const handleReject = (id) => rejectMutation.mutate(id);
 
   if(isLoading) return <Loading/>
-  if(error) return <Error/>
+  if(error) return <Error message={error.message}/>
 
   return (
     <div className="p-6">

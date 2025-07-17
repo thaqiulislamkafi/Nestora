@@ -1,19 +1,37 @@
 import React from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { FaUserCircle, FaTrashAlt, FaStar } from 'react-icons/fa';
 import { GiModernCity } from 'react-icons/gi';
 import Swal from 'sweetalert2';
 import useAxios from '../Hooks/useAxios';
+import Loading from '../SharedElement/Loading';
+import Error from '../SharedElement/Error';
 
 const ManageReviews = () => {
   const axiosSecure = useAxios();
 
-  const { data: reviews = [], refetch, isLoading } = useQuery({
+  const queryClient = useQueryClient() ;
+
+  const { data: reviews , error, isLoading } = useQuery({
     queryKey: ['allReviews'],
     queryFn: async () => {
       const res = await axiosSecure.get('/reviews');
       return res.data;
     },
+  });
+
+  const { mutateAsync: deleteReview } = useMutation({
+    mutationFn: async ({id}) => {
+      const res = await axiosSecure.delete(`/review/${id}`);
+      return res.data;
+    },
+    onSuccess: () => {  
+        queryClient.invalidateQueries(['reviews'])
+        Swal.fire('Deleted!', 'Review has been deleted.', 'success');  
+    },
+    onError: () => {
+      Swal.fire('Error!', 'Failed to delete the review.', 'error');
+    }
   });
 
   const handleDelete = async (id, reviewerEmail, propertyId) => {
@@ -28,20 +46,12 @@ const ManageReviews = () => {
     });
 
     if (confirm.isConfirmed) {
-      try {
-        const res = await axiosSecure.delete(`/review/${id}?email=${reviewerEmail}&propertyId=${propertyId}`);
-        if (res.data?.deletedReview?.deletedCount > 0) {
-          Swal.fire('Deleted!', 'Review has been deleted.', 'success');
-          refetch();
-        }
-      } catch (error) {
-        Swal.fire('Error!', 'Failed to delete the review.', 'error');
-        console.error(error);
-      }
+        await deleteReview({ id, reviewerEmail, propertyId });
     }
   };
 
-  if (isLoading) return <div className="text-center my-10">Loading reviews...</div>;
+  if (isLoading) return <Loading/> ;
+  if(error) return <Error message={error.message} />
 
   return (
     <div className="py-12 px-4 sm:px-6 lg:px-8">

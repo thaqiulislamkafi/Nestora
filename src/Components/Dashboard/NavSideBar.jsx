@@ -1,6 +1,6 @@
 import React, { use } from 'react';
 import { NavLink, useNavigate } from 'react-router';
-import { FaHome, FaHistory, FaSignOutAlt, FaBoxOpen, FaUser, FaHeart, FaStar, FaPlusCircle, FaCheckCircle, FaHandshake, FaTasks, FaUsersCog, FaStarHalfAlt, } from 'react-icons/fa';
+import { FaHome, FaHistory, FaSignOutAlt, FaBoxOpen, FaUser, FaHeart, FaStar, FaPlusCircle, FaCheckCircle, FaHandshake, FaTasks, FaUsersCog, FaStarHalfAlt, FaBullhorn, } from 'react-icons/fa';
 import { AuthContext } from '../Provider/AuthProvider';
 import UseUserRole from '../Hooks/useUserRole';
 // import UseUserRole from '../Hooks/UseUserRole';
@@ -176,6 +176,19 @@ const NavSideBar = () => {
                             <span>Manage Reviews</span>
                         </NavLink>
 
+                        <NavLink
+                            to="/dashboard/advertiseProperty"
+                            className={({ isActive }) =>
+                                `flex items-center p-3 rounded-lg transition-colors ${isActive
+                                    ? 'bg-[#fceb00] text-gray-900 font-medium'
+                                    : 'hover:bg-gray-100 text-gray-700'
+                                }`
+                            }
+                        >
+                            <FaBullhorn className="mr-3" />
+                            <span>Advertise Property</span>
+                        </NavLink>
+
 
 
                     </>
@@ -185,7 +198,7 @@ const NavSideBar = () => {
 
                     (role === 'agent') && <>
 
-                        
+
 
                         <NavLink
                             to="/dashboard/add-property"
