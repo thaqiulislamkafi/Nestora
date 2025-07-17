@@ -20,10 +20,10 @@ const RequestedProperties = () => {
   });
 
   const { mutate: updateStatus } = useMutation({
-    mutationFn: async ({ userEmail, propertyId, status }) => {
+    mutationFn: async ({ buyerEmail, propertyId, status }) => {
       const { data } = await axiosSecure.patch('/agent/update-offer-status', {
         agentEmail: currentUser?.email,
-        userEmail,
+        buyerEmail ,
         propertyId,
         status,
       });
@@ -76,7 +76,7 @@ const RequestedProperties = () => {
                         className="btn btn-xs bg-green-500 text-white hover:bg-green-600"
                         onClick={() =>
                           updateStatus({
-                            userEmail: offer.userEmail,
+                            buyerEmail: offer.buyerEmail,
                             propertyId: offer.propertyId,
                             status: 'accepted',
                           })
@@ -88,7 +88,7 @@ const RequestedProperties = () => {
                         className="btn btn-xs bg-red-500 text-white hover:bg-red-600"
                         onClick={() =>
                           updateStatus({
-                            userEmail: offer.userEmail,
+                            buyerEmail: offer.buyerEmail,
                             propertyId: offer.propertyId,
                             status: 'rejected',
                           })
