@@ -19,6 +19,8 @@ import UserRoute from "./src/Components/Route/UserRoute";
 import PropertyBought from "./src/Components/Dashboard/PropertyBought";
 import MyReviews from "./src/Components/Home/MyReviews";
 import RequestedProperties from "./src/Components/Home/RequestedProperties";
+import ManageProperties from "./src/Components/Dashboard/ManageProperties";
+import AdminRoute from "./src/Components/Route/AdminRoute";
 
 
 
@@ -92,6 +94,10 @@ export const router = createBrowserRouter([
             {
                 path : 'requested-properties',
                 element : <AgentRoute><RequestedProperties/></AgentRoute>
+            },
+            {
+                path : 'manageProperties',
+                element : <AdminRoute><ManageProperties/></AdminRoute>
             },
         ]
     },

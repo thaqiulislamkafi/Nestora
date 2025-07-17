@@ -13,11 +13,11 @@ const PropertyBought = () => {
   const axiosSecure = useAxios();
   const navigate = useNavigate();
 
-  const { data: wishlist = [], isLoading ,error } = useQuery({
+  const { data: wishlist = [], isLoading, error } = useQuery({
     queryKey: ['wishlist', currentUser?.email],
     queryFn: async () => {
-      const {data} = await axiosSecure.get(`/getBoughtProperty?email=${currentUser?.email}`);
-      return data ;
+      const { data } = await axiosSecure.get(`/getBoughtProperty?email=${currentUser?.email}`);
+      return data;
     },
     enabled: !!currentUser?.email
   });
@@ -30,7 +30,7 @@ const PropertyBought = () => {
 
   if (isLoading) return <Loading />;
 
-  if(error) return <Error/>
+  if (error) return <Error />
 
   return (
     <div className="w-4/5 mx-auto py-6">
@@ -69,30 +69,34 @@ const PropertyBought = () => {
                   Offered Amount: ৳{property.offerAmount?.toLocaleString()}
                 </div>
 
-                <div className="my-1 text-sm font-semibold">
-                  Status: <span className={
-                    property.status === 'accepted' ? 'text-green-600' :
-                    property.status === 'pending' ? 'text-yellow-500' :
-                    'text-blue-600'
-                  }>
-                    {property.status === 'bought' ? 'Bought' : property.status}
-                  </span>
+                <div className='flex items-center gap-2 '>
+
+                  <div className=" text-sm font-semibold">
+                    Status: <span className={
+                      property.status === 'accepted' ? 'text-green-600' :
+                        property.status === 'pending' ? 'text-yellow-500' :
+                          'text-blue-600'
+                    }>
+                      {property.status}
+                    </span>
+                  </div>
+
+                  {property.status === 'accepted' && (
+                    <button
+                      className="btn btn-xs bg-green-500 text-white  hover:bg-green-600"
+                      onClick={() => handlePay(property)}
+                    >
+                      <FaMoneyBillWave className='' />Pay Now
+                    </button>
+                  )}
                 </div>
 
-                {property.status === 'accepted' && !property.transactionId && (
-                  <button
-                    className="btn btn-sm w-full bg-green-500 text-white mt-2 hover:bg-green-600"
-                    onClick={() => handlePay(property)}
-                  >
-                    <FaMoneyBillWave className='inline-block mr-2' />Pay Now
-                  </button>
-                )}
-
-                {property.status === 'bought' && property.transactionId && (
+                {property?.status === 'bought' && property?.transactionId && (
                   <div className="text-sm mt-2 text-green-700">
                     <span className="font-medium">Transaction ID:</span> {property.transactionId}
                   </div>
                 )}
+
               </div>
             </div>
           </Fade>
