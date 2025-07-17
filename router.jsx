@@ -23,6 +23,7 @@ import ManageProperties from "./src/Components/Dashboard/ManageProperties";
 import AdminRoute from "./src/Components/Route/AdminRoute";
 import ManageUsers from "./src/Components/Dashboard/ManageUsers";
 import ManageReviews from "./src/Components/Dashboard/ManageReviews";
+import AdvertiseProperty from "./src/Components/Dashboard/AdvertiseProperty";
 
 
 
@@ -108,6 +109,10 @@ export const router = createBrowserRouter([
             {
                 path : 'manageReviews',
                 element : <AdminRoute><ManageReviews/></AdminRoute>
+            },
+            {
+                path : 'advertiseProperty',
+                element : <AdminRoute><AdvertiseProperty/></AdminRoute>
             },
         ]
     },

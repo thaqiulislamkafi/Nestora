@@ -1,11 +1,80 @@
-import React from 'react';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import Swal from 'sweetalert2';
+import useAxios from '../Hooks/useAxios';
 
 const AdvertiseProperty = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+  const axiosSecure = useAxios();
+  const queryClient = useQueryClient();
+
+ 
+  const { data: properties , isLoading } = useQuery({
+    queryKey: ['verifiedProperties'],
+    queryFn: async () => {
+      const res = await axiosSecure.get('/properties');
+      return res.data;
+    }
+  });
+
+  const { mutate: advertiseProperty } = useMutation({
+    mutationFn: async (id) => {
+      const res = await axiosSecure.patch(`/property/advertise/${id}`);
+      return res.data;
+    },
+    onSuccess: () => {
+      Swal.fire('Success', 'Property marked for advertisement.', 'success');
+      queryClient.invalidateQueries(['verifiedProperties']);
+    },
+    onError: () => {
+      Swal.fire('Error', 'Failed to advertise property.', 'error');
+    }
+  });
+
+  if (isLoading) return <div className="text-center py-10">Loading...</div>;
+
+  return (
+    <div className="px-6 py-8">
+      <h2 className="text-2xl font-bold mb-6">Advertise Property</h2>
+      <div className="overflow-x-auto rounded-xl shadow-md">
+        <table className="table table-zebra w-full">
+          <thead className="bg-gray-100 text-gray-700">
+            <tr>
+              <th>Image</th>
+              <th>Title</th>
+              <th>Price Range</th>
+              <th>Agent Name</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {properties
+              .filter((p) => !p.isAdvertised)
+              .map((property) => (
+                <tr key={property._id}>
+                  <td>
+                    <img
+                      src={property.image}
+                      alt={property.title}
+                      className="h-12 w-16 object-cover rounded"
+                    />
+                  </td>
+                  <td>{property.title}</td>
+                  <td>{property.priceRange}</td>
+                  <td>{property.agentName}</td>
+                  <td>
+                    <button
+                      onClick={() => advertiseProperty(property._id)}
+                      className="btn btn-sm bg-[#fceb00] text-gray-900 rounded-xl"
+                    >
+                      Advertise
+                    </button>
+                  </td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 };
 
 export default AdvertiseProperty;
