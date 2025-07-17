@@ -26,7 +26,7 @@ const MyReviews = () => {
     // Delete review
     const deleteMutation = useMutation({
         mutationFn: async (id) => {
-            return await axiosSecure.delete(`/reviews/${id}`);
+            return await axiosSecure.delete(`/review/${id}`);
         },
         onSuccess: () => {
             queryClient.invalidateQueries(['myReviews']);
@@ -62,7 +62,7 @@ const MyReviews = () => {
         <Bounce cascade damping={0.09} triggerOnce>
             <div className="py-12 px-4 sm:px-6 lg:px-8 ">
                 <div className="max-w-7xl mx-auto">
-                    <h2 className="text-2xl lg:text-4xl font-bold text-center mb-8 text-gray-900 inter-font">
+                    <h2 className="text-xl lg:text-3xl font-bold text-center mb-8 text-gray-900 inter-font">
                         My Reviews
                     </h2>
 
@@ -106,7 +106,7 @@ const MyReviews = () => {
 
                                         <button
                                             onClick={() => handleDelete(review._id)}
-                                            className="text-red-500 hover:text-red-700"
+                                            className="text-[#fceb00] hover:text-[#f8fc00] btn btn-xs rounded-full p-1.5"
                                             title="Delete Review"
                                         >
                                             <FaTrash />

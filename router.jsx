@@ -18,6 +18,7 @@ import Unauthorized from "./src/Components/Error/Unauthorized";
 import UserRoute from "./src/Components/Route/UserRoute";
 import PropertyBought from "./src/Components/Dashboard/PropertyBought";
 import MyReviews from "./src/Components/Home/MyReviews";
+import RequestedProperties from "./src/Components/Home/RequestedProperties";
 
 
 
@@ -87,6 +88,10 @@ export const router = createBrowserRouter([
             {
                 path : 'update-property/:propertyId',
                 element : <AgentRoute><UpdateProperty/></AgentRoute>
+            },
+            {
+                path : 'requested-properties',
+                element : <AgentRoute><RequestedProperties/></AgentRoute>
             },
         ]
     },
