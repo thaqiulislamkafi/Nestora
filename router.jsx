@@ -21,6 +21,8 @@ import MyReviews from "./src/Components/Home/MyReviews";
 import RequestedProperties from "./src/Components/Home/RequestedProperties";
 import ManageProperties from "./src/Components/Dashboard/ManageProperties";
 import AdminRoute from "./src/Components/Route/AdminRoute";
+import ManageUsers from "./src/Components/Dashboard/ManageUsers";
+import ManageReviews from "./src/Components/Dashboard/ManageReviews";
 
 
 
@@ -98,6 +100,14 @@ export const router = createBrowserRouter([
             {
                 path : 'manageProperties',
                 element : <AdminRoute><ManageProperties/></AdminRoute>
+            },
+            {
+                path : 'manageUsers',
+                element : <AdminRoute><ManageUsers/></AdminRoute>
+            },
+            {
+                path : 'manageReviews',
+                element : <AdminRoute><ManageReviews/></AdminRoute>
             },
         ]
     },
