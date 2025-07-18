@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 // import { FaGoogle, FaEnvelope, FaLock } from 'react-icons/fa';
 import { FcGoogle } from "react-icons/fc";
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import { auth } from '../Firebase/authentication';
@@ -16,6 +16,7 @@ const Registration = () => {
     const provider = new GoogleAuthProvider();
     const [image, setImage] = useState(null);
     const [imageURL, setImageURL] = useState();
+    const navigate = useNavigate()
 
     const axiosSecure = useAxios();
 
@@ -65,6 +66,14 @@ const Registration = () => {
                     photoURL: imageURL
                 })
 
+                Swal.fire({
+                    title: "Welcome!",
+                    text: "User Successfully Created",
+                    icon: "success"
+                });
+
+                navigate('/') ;
+
                 const userData = {
                     userEmail: data.email,
                     userPhoto: imageURL,
@@ -72,7 +81,7 @@ const Registration = () => {
                     role: 'user',
                     created_at: new Date().toISOString().split('T')[0],
                 }
-                console.log(userData)
+                
                 axiosSecure.post('/users', userData)
                     .then((res) => {
                         if (res.data.insertedId) {
@@ -83,11 +92,7 @@ const Registration = () => {
                         console.log(error)
                     })
 
-                Swal.fire({
-                    title: "Welcome!",
-                    text: "User Successfully Created",
-                    icon: "success"
-                });
+                
             }
         }
         catch (error) {
@@ -99,6 +104,14 @@ const Registration = () => {
 
         signInWithPopup(auth, provider)
             .then((res) => {
+
+                Swal.fire({
+                    title: "Congrats!",
+                    text: "Users Sucessfully Logged in!",
+                    icon: "success"
+                });
+
+                navigate('/')
 
                 const userData = {
                     userEmail: res.user.email,
@@ -118,11 +131,7 @@ const Registration = () => {
                         console.log(error)
                     })
 
-                Swal.fire({
-                    title: "Congrats!",
-                    text: "Users Sucessfully Logged in!",
-                    icon: "success"
-                });
+               
 
 
             })
