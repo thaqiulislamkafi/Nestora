@@ -28,6 +28,7 @@ const AuthProvider = ({ children }) => {
 
   const value = {
     currentUser,
+    setCurrentUser,
     loading,
     isModalOpen, 
     setIsModalOpen

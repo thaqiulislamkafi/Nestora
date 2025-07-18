@@ -24,6 +24,8 @@ import AdminRoute from "./src/Components/Route/AdminRoute";
 import ManageUsers from "./src/Components/Dashboard/ManageUsers";
 import ManageReviews from "./src/Components/Dashboard/ManageReviews";
 import AdvertiseProperty from "./src/Components/Dashboard/AdvertiseProperty";
+import Payment from "./src/Components/Dashboard/Payment";
+import MySoldProperties from "./src/Components/Dashboard/MySoldProperties";
 
 
 
@@ -83,6 +85,10 @@ export const router = createBrowserRouter([
                 element : <UserRoute><MyReviews/></UserRoute>
             },
             {
+                path : 'payment/:propertyId',
+                element : <UserRoute><Payment/></UserRoute>
+            },
+            {
                 path : 'add-property',
                 element : <AgentRoute><AddProperty/></AgentRoute>
             },
@@ -93,6 +99,10 @@ export const router = createBrowserRouter([
             {
                 path : 'update-property/:propertyId',
                 element : <AgentRoute><UpdateProperty/></AgentRoute>
+            },
+            {
+                path : 'sold-properties',
+                element : <AgentRoute><MySoldProperties/></AgentRoute>
             },
             {
                 path : 'requested-properties',

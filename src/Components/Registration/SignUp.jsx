@@ -1,5 +1,5 @@
 import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, updateProfile } from 'firebase/auth';
-import React, { useState } from 'react';
+import React, { use, useState } from 'react';
 import { useForm } from 'react-hook-form';
 // import { FaGoogle, FaEnvelope, FaLock } from 'react-icons/fa';
 import { FcGoogle } from "react-icons/fc";
@@ -8,6 +8,8 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 import { auth } from '../Firebase/authentication';
 import useAxios from '../Hooks/useAxios';
+import Loading from '../SharedElement/Loading';
+import { AuthContext } from '../Provider/AuthProvider';
 
 
 const Registration = () => {
@@ -15,8 +17,11 @@ const Registration = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const provider = new GoogleAuthProvider();
     const [image, setImage] = useState(null);
-    const [imageURL, setImageURL] = useState();
-    const navigate = useNavigate()
+    const [imageURL, setImageURL] = useState('');
+    const navigate = useNavigate() ;
+    const [imageUploading, setImageUploading] = useState(false);
+
+    // const {setCurrentUser} = use(AuthContext) ;
 
     const axiosSecure = useAxios();
 
@@ -25,7 +30,12 @@ const Registration = () => {
         if (e.target.files[0]) {
             setImage(e.target.files[0])
             console.log(e.target.files[0])
+            uploadImage();
+
         }
+       
+
+
     }
 
     const uploadImage = async () => {
@@ -33,20 +43,27 @@ const Registration = () => {
         if (!image) {
             return null;
         }
+        setImageUploading(true);
+
 
         const formData = new FormData();
         formData.append('image', image);
 
         try {
             const response = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_REACT_APP_IMGBB_KEY}`, formData)
-
             setImageURL(response.data.data.url)
+            console.log(response)
         }
         catch (error) {
             console.log(error)
+        } finally{
+            setImageUploading(false);
+
         }
 
     }
+    console.log(imageURL)
+    if(imageUploading) return <Loading/>
 
 
     const onSubmit = async (data) => {
@@ -54,22 +71,19 @@ const Registration = () => {
 
         try {
 
-            uploadImage();
             const user = await createUserWithEmailAndPassword(
                 auth, data.email, data.password
             )
             if (user?.user) {
 
-                console.log(imageURL)
+                // setCurrentUser({...user.user,photoURL:imageURL}) ; 
+                // console.log(imageURL)
                 updateProfile(user.user, {
                     displayName: data.name,
                     photoURL: imageURL
                 })
 
-                Swal.fire({
-                    title: "Welcome!",
-                    text: "User Successfully Created",
-                    icon: "success"
+                Swal.fire({ title: "Welcome!",text: "User Successfully Created", icon: "success"
                 });
 
                 navigate('/') ;
@@ -105,10 +119,7 @@ const Registration = () => {
         signInWithPopup(auth, provider)
             .then((res) => {
 
-                Swal.fire({
-                    title: "Congrats!",
-                    text: "Users Sucessfully Logged in!",
-                    icon: "success"
+                Swal.fire({title: "Congrats!",text: "Users Sucessfully Logged in!",icon: "success"
                 });
 
                 navigate('/')
@@ -157,7 +168,7 @@ const Registration = () => {
                                     <div className="w-fit my-2 cursor-pointer">
                                         {image ? (
                                             <img
-                                                src={URL.createObjectURL(image)}
+                                                src={imageURL}
                                                 alt="Preview"
                                                 className="w-12 h-auto object-cover"
                                             />

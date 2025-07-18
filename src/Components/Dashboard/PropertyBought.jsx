@@ -23,7 +23,7 @@ const PropertyBought = () => {
   });
 
   const handlePay = (property) => {
-    navigate(`/dashboard/payment/${property.propertyId}`, {
+    navigate(`/dashboard/payment/${property._id}`, {
       state: { property }
     });
   };

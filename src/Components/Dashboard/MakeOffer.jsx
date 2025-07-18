@@ -87,6 +87,7 @@ const MakeOffer = () => {
             propertyId : propertyId,
             agentName : property.agentName ,
             agentEmail : property.agentEmail,
+            location : property.location ,
             offerAmount : data.offerAmount,
             status : 'pending'
         }

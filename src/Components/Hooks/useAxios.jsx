@@ -10,7 +10,7 @@ export const axiosSecure = axios.create({
 })
 
 // export const axiosSecure = axios.create({
-//     baseURL : `https://assignment-12-server-site-two.vercel.app`, 
+//     baseURL : `https://assignment-12serversite.vercel.app`, 
 // })
 
 const useAxios = ()=>{

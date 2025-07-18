@@ -62,8 +62,8 @@ const ManageUsers = () => {
   if(error) return <Error message={error.message}/>
 
   return (
-    <div className="w-[90%] mx-auto my-10">
-      <h2 className="text-2xl font-bold text-center mb-6">Manage Users</h2>
+    <div className="w-[90%] mx-auto my-8">
+      <h2 className="text-2xl lg:text-3xl font-bold text-center mb-10">Manage Users</h2>
 
       <div className="overflow-x-auto">
         <table className="table table-zebra w-full">

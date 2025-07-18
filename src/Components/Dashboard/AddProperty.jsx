@@ -21,12 +21,8 @@ const AddProperty = () => {
 
 
     const { register, handleSubmit, formState: { errors }, } = useForm({
-        defaultValues: {
-            title: '',
-            location: '',
-            priceRange: '',
-            agentName: currentUser?.displayName || '',
-            agentEmail: currentUser?.email || '',
+        defaultValues: {title: '',location: '',priceRange: '',
+            agentName: currentUser?.displayName || '',agentEmail: currentUser?.email || '',
         },
     });
 
@@ -37,19 +33,15 @@ const AddProperty = () => {
         },
         onSuccess : ()=>{
             queryClient.invalidateQueries(['properties'])
-            Swal.fire({
-                title: "Good job!",
-                text: "Property added!",
-                icon: "success"
-              });
-        }
-        
+            Swal.fire({title: "Good job!",text: "Property added!",icon: "success"});
+        }  
     })
 
     const handleImageUpload = async (e) => {
         const file = e.target.files[0];
         setImage(e.target.files[0]) ;
         console.log(file)
+        
         if (!file) return;
 
         setImageUploading(true);

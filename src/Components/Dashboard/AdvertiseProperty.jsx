@@ -33,10 +33,11 @@ const AdvertiseProperty = () => {
 
   return (
     <div className="px-6 py-8">
-      <h2 className="text-2xl font-bold mb-6">Advertise Property</h2>
-      <div className="overflow-x-auto rounded-xl shadow-md">
+      <h2 className="text-2xl lg:text-3xl font-bold text-center mb-10">Advertise Property</h2>
+
+      <div className="overflow-x-auto ">
         <table className="table table-zebra w-full">
-          <thead className="bg-gray-100 text-gray-700">
+          <thead className="bg-[#fceb00] text-gray-900 text-base">
             <tr>
               <th>Image</th>
               <th>Title</th>

@@ -49,14 +49,16 @@ const ManageProperties = () => {
   const handleReject = (id) => rejectMutation.mutate(id);
 
   if(isLoading) return <Loading/>
-  if(error) return <Error message={error.message}/>
+  if(error) return <Error message={error.message
+
+  }/>
 
   return (
     <div className="p-6">
       
 
       <div className="overflow-x-auto rounded-xl shadow  min-w-6xl">
-      <h1 className="text-2xl lg:text-3xl font-bold text-center mb-6">Manage Properties</h1>
+      <h1 className="text-2xl lg:text-3xl font-bold text-center mb-10">Manage Properties</h1>
         <table className="table table-zebra">
           <thead className="bg-[#fceb00] text-gray-800">
             <tr>
