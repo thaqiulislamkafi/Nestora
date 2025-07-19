@@ -42,9 +42,9 @@ const MakeOffer = () => {
                 icon: 'success', title: 'Success!', text: 'Property updated successfully', showConfirmButton: false, timer: 1500
             });
         },
-        onError: (error) => {
+        onError: () => {
             Swal.fire({
-                icon: 'error', title: 'Error', text: error.response?.data?.message || 'Failed to update property', showConfirmButton: false, timer: 1500
+                icon: 'error', title: 'Error', text: 'Failed to update property', showConfirmButton: false, timer: 1500
             });
         }
     });
@@ -94,12 +94,10 @@ const MakeOffer = () => {
         MakeOffer(updatedData) ;
     };
 
-    if (isLoading)
-        return <Loading />
+    if (isLoading) return <Loading />
 
-    if (error) {
-        return <Error message={error.message} />
-    }
+    if (error)  return <Error message={error.message} />
+    
 
 
 

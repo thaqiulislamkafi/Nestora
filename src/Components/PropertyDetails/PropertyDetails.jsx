@@ -9,6 +9,7 @@ import { GiModernCity } from 'react-icons/gi';
 import { AuthContext } from '../Provider/AuthProvider';
 import Swal from 'sweetalert2';
 import { useForm } from 'react-hook-form';
+import UseUserRole from '../Hooks/useUserRole';
 
 
 const PropertyDetails = () => {
@@ -16,7 +17,9 @@ const PropertyDetails = () => {
     const axiosSecure = useAxios();
     const { propertyId } = useParams()
     const queryClient = useQueryClient();
+
     const { currentUser } = use(AuthContext);
+    const {role} = UseUserRole() ;
 
     const [isOpen, setIsOpen] = useState(false);
     const { register, handleSubmit } = useForm();
@@ -30,6 +33,8 @@ const PropertyDetails = () => {
             return res.data;
         }
     })
+
+    const isUser = () => role === 'user';
 
     const property = data?.result || []
     const reviews = data?.reviews || []
@@ -124,7 +129,7 @@ const PropertyDetails = () => {
                         agentName}</span></p>
                     <p className='font-medium my-2 text-sm lg:text-lg'>Price Range : <span className='text-[#23BE0A] font-bold'>{property.priceRange}</span></p>
 
-                    <button onClick={handleWishlist} className='btn btn-sm btn-ghost border-amber-300 rounded-3xl my-2 Button'>Add to Whishlist</button>
+                    <button disabled={!isUser()} onClick={handleWishlist} className='btn btn-sm btn-ghost border-amber-300 rounded-3xl my-2 Button'>Add to Whishlist</button>
 
 
                 </div>

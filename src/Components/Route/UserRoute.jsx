@@ -7,9 +7,8 @@ const UserRoute = ({children}) => {
     const location = useLocation();
     const { role, isLoading, error } = UseUserRole();
 
-    if (isLoading) {
-        return <Loading />;
-    }
+    if (isLoading) return <Loading />;
+    
 
     if (error || !role) {
         return <Navigate to="/login" state={{ from: location }} replace />;

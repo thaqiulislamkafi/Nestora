@@ -34,7 +34,11 @@ const AddProperty = () => {
         onSuccess : ()=>{
             queryClient.invalidateQueries(['properties'])
             Swal.fire({title: "Good job!",text: "Property added!",icon: "success"});
-        }  
+        },
+        onError: () => {
+              Swal.fire({icon: 'error',title: 'Error',text: 'Failed to add property',showConfirmButton: false, timer: 1500
+              });
+            }  
     })
 
     const handleImageUpload = async (e) => {

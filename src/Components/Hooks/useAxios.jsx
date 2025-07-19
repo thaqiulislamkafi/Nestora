@@ -5,13 +5,13 @@ import { AuthContext } from '../Provider/AuthProvider';
 import Loading from '../SharedElement/Loading';
 
 
-export const axiosSecure = axios.create({
-    baseURL : `http://localhost:5000`
-})
-
 // export const axiosSecure = axios.create({
-//     baseURL : `https://assignment-12serversite.vercel.app`, 
+//     baseURL : `http://localhost:5000`
 // })
+
+export const axiosSecure = axios.create({
+    baseURL : `https://assignment-12serversite.vercel.app`, 
+})
 
 const useAxios = ()=>{
 

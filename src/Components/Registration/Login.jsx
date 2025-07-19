@@ -30,7 +30,11 @@ const Login = () => {
                 navigate(from, { replace: true })
 
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                Swal.fire({
+                    icon: 'error', title: 'Error', text: `${error.message}`, showConfirmButton: false, timer: 1500
+                });
+            })
     }
 
     const handleGoogleSignin = () => {
@@ -159,7 +163,7 @@ const Login = () => {
                     <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-[#fceb00] to-[#e6d706]  items-center rounded-l-[150px] justify-center">
 
 
-                       <div><img className='min-w-140' src="https://i.postimg.cc/k4qyxLFw/login-2.png" alt="" /></div>
+                        <div><img className='min-w-140' src="https://i.postimg.cc/k4qyxLFw/login-2.png" alt="" /></div>
                     </div>
                 </div>
             </div>

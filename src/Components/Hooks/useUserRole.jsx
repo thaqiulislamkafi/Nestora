@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { use } from 'react';
 import useAxios from './useAxios';
 import { AuthContext } from '../Provider/AuthProvider';
+import Loading from '../SharedElement/Loading';
 
 
 const UseUserRole = () => {
@@ -16,6 +17,8 @@ const UseUserRole = () => {
             return response.data;
         },
     });
+
+    // if(isLoading) return <Loading/>
 
     
     return {

@@ -26,6 +26,7 @@ import ManageReviews from "./src/Components/Dashboard/ManageReviews";
 import AdvertiseProperty from "./src/Components/Dashboard/AdvertiseProperty";
 import Payment from "./src/Components/Dashboard/Payment";
 import MySoldProperties from "./src/Components/Dashboard/MySoldProperties";
+import PrivateRoute from "./src/Components/Route/PrivateRoute";
 
 
 
@@ -41,11 +42,11 @@ export const router = createBrowserRouter([
             },
             {
                 path : '/allProperties',
-                element : <AllProperties/>
+                element : <PrivateRoute><AllProperties/></PrivateRoute>
             },
             {
                 path : '/propertyDetails/:propertyId',
-                element : <PropertyDetails/>
+                element : <PrivateRoute><PropertyDetails/></PrivateRoute>
             },
             
             

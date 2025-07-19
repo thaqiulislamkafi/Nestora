@@ -8,8 +8,7 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 import { auth } from '../Firebase/authentication';
 import useAxios from '../Hooks/useAxios';
-import Loading from '../SharedElement/Loading';
-import { AuthContext } from '../Provider/AuthProvider';
+
 
 
 const Registration = () => {
@@ -18,52 +17,37 @@ const Registration = () => {
     const provider = new GoogleAuthProvider();
     const [image, setImage] = useState(null);
     const [imageURL, setImageURL] = useState('');
-    const navigate = useNavigate() ;
+    const navigate = useNavigate();
     const [imageUploading, setImageUploading] = useState(false);
+
+    const [fireBaseError, setFirebaseError ] = useState('');
 
     // const {setCurrentUser} = use(AuthContext) ;
 
     const axiosSecure = useAxios();
 
-    const handleImageChange = (e) => {
+    const handleImageChange = async (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setImage(file);
 
-        if (e.target.files[0]) {
-            setImage(e.target.files[0])
-            console.log(e.target.files[0])
-            uploadImage();
+            const formData = new FormData();
+            formData.append('image', file);
 
+            try {
+                const response = await axios.post(
+                    `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_REACT_APP_IMGBB_KEY}`,
+                    formData
+                );
+                setImageURL(response.data.data.url);
+            } catch (error) {
+                console.error('Image Upload Failed:', error);
+                Swal.fire('Error', 'Image upload failed. Try again.', 'error');
+            }
         }
-       
+    };
 
 
-    }
-
-    const uploadImage = async () => {
-
-        if (!image) {
-            return null;
-        }
-        setImageUploading(true);
-
-
-        const formData = new FormData();
-        formData.append('image', image);
-
-        try {
-            const response = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_REACT_APP_IMGBB_KEY}`, formData)
-            setImageURL(response.data.data.url)
-            console.log(response)
-        }
-        catch (error) {
-            console.log(error)
-        } finally{
-            setImageUploading(false);
-
-        }
-
-    }
-    console.log(imageURL)
-    if(imageUploading) return <Loading/>
 
 
     const onSubmit = async (data) => {
@@ -76,17 +60,16 @@ const Registration = () => {
             )
             if (user?.user) {
 
-                // setCurrentUser({...user.user,photoURL:imageURL}) ; 
-                // console.log(imageURL)
                 updateProfile(user.user, {
                     displayName: data.name,
                     photoURL: imageURL
                 })
 
-                Swal.fire({ title: "Welcome!",text: "User Successfully Created", icon: "success"
+                Swal.fire({
+                    title: "Welcome!", text: "User Successfully Created", icon: "success"
                 });
 
-                navigate('/') ;
+                navigate('/');
 
                 const userData = {
                     userEmail: data.email,
@@ -95,7 +78,7 @@ const Registration = () => {
                     role: 'user',
                     created_at: new Date().toISOString().split('T')[0],
                 }
-                
+
                 axiosSecure.post('/users', userData)
                     .then((res) => {
                         if (res.data.insertedId) {
@@ -106,12 +89,15 @@ const Registration = () => {
                         console.log(error)
                     })
 
-                
+
             }
         }
         catch (error) {
-            console.error(error);
+            console.log(error);
+            Swal.fire({icon: 'error',title: 'Error',text: `${error.message}`,showConfirmButton: false, timer: 1500
+            });
         }
+        
     }
 
     const handleGoogleSignin = () => {
@@ -119,7 +105,8 @@ const Registration = () => {
         signInWithPopup(auth, provider)
             .then((res) => {
 
-                Swal.fire({title: "Congrats!",text: "Users Sucessfully Logged in!",icon: "success"
+                Swal.fire({
+                    title: "Congrats!", text: "Users Sucessfully Logged in!", icon: "success"
                 });
 
                 navigate('/')
@@ -142,7 +129,7 @@ const Registration = () => {
                         console.log(error)
                     })
 
-               
+
 
 
             })
@@ -205,6 +192,12 @@ const Registration = () => {
                                             {...register('email', { required: true })}
                                             className="input w-full font-semibold" placeholder="you@example.com" />
                                         {errors.email?.type === 'required' && <p className='Error'>Email is required</p>}
+
+                                        {fireBaseError && (
+                                            <p className="text-red-500 text-sm text-center mt-2">
+                                                {fireBaseError}
+                                            </p>
+                                        )}
                                     </div>
 
                                 </div>

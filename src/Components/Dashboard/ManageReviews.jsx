@@ -10,9 +10,9 @@ import Error from '../SharedElement/Error';
 const ManageReviews = () => {
   const axiosSecure = useAxios();
 
-  const queryClient = useQueryClient() ;
+  const queryClient = useQueryClient();
 
-  const { data: reviews , error, isLoading } = useQuery({
+  const { data: reviews, error, isLoading } = useQuery({
     queryKey: ['allReviews'],
     queryFn: async () => {
       const res = await axiosSecure.get('/reviews');
@@ -21,16 +21,20 @@ const ManageReviews = () => {
   });
 
   const { mutateAsync: deleteReview } = useMutation({
-    mutationFn: async ({id}) => {
+    mutationFn: async ({ id }) => {
       const res = await axiosSecure.delete(`/review/${id}`);
       return res.data;
     },
-    onSuccess: () => {  
-        queryClient.invalidateQueries(['reviews'])
-        Swal.fire('Deleted!', 'Review has been deleted.', 'success');  
+    onSuccess: () => {
+      queryClient.invalidateQueries(['reviews'])
+      Swal.fire({
+        icon: 'success', title: 'Success!', text: 'Review Deleted successfully', showConfirmButton: false, timer: 1500
+      });
     },
     onError: () => {
-      Swal.fire('Error!', 'Failed to delete the review.', 'error');
+      Swal.fire({
+        icon: 'error', title: 'Error', text: 'Failed to Delete Review', showConfirmButton: false, timer: 1500
+      });
     }
   });
 
@@ -46,12 +50,12 @@ const ManageReviews = () => {
     });
 
     if (confirm.isConfirmed) {
-        await deleteReview({ id, reviewerEmail, propertyId });
+      await deleteReview({ id, reviewerEmail, propertyId });
     }
   };
 
-  if (isLoading) return <Loading/> ;
-  if(error) return <Error message={error.message} />
+  if (isLoading) return <Loading />;
+  if (error) return <Error message={error.message} />
 
   return (
     <div className="py-12 px-4 sm:px-6 lg:px-8">
@@ -90,11 +94,11 @@ const ManageReviews = () => {
               <p className="text-gray-600 italic mb-4">{review.description}</p>
 
               <div className='flex items-center justify-between'>
-              <div className="flex items-center text-sm text-gray-500">
-                <GiModernCity className="mr-2" />
-                <span>{review.propertyTitle}</span>
-              </div>
-              <button
+                <div className="flex items-center text-sm text-gray-500">
+                  <GiModernCity className="mr-2" />
+                  <span>{review.propertyTitle}</span>
+                </div>
+                <button
                   className="btn btn-sm p-2 rounded-full"
                   onClick={() => handleDelete(review._id, review.reviewerEmail, review.propertyId)}
                 >

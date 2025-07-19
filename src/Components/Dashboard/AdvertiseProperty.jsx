@@ -1,13 +1,15 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import useAxios from '../Hooks/useAxios';
+import Loading from '../SharedElement/Loading';
+import Error from '../SharedElement/Error';
 
 const AdvertiseProperty = () => {
   const axiosSecure = useAxios();
   const queryClient = useQueryClient();
 
  
-  const { data: properties , isLoading } = useQuery({
+  const { data: properties , isLoading,error } = useQuery({
     queryKey: ['verifiedProperties'],
     queryFn: async () => {
       const res = await axiosSecure.get('/properties');
@@ -25,11 +27,13 @@ const AdvertiseProperty = () => {
       queryClient.invalidateQueries(['verifiedProperties']);
     },
     onError: () => {
-      Swal.fire('Error', 'Failed to advertise property.', 'error');
-    }
+      Swal.fire({icon: 'error',title: 'Error',text: 'Failed to Advertise Property',showConfirmButton: false, timer: 1500
+      });
+    }  
   });
 
-  if (isLoading) return <div className="text-center py-10">Loading...</div>;
+  if (isLoading) return <Loading/>;
+  if(error) return <Error message={error.message}/>
 
   return (
     <div className="px-6 py-8">

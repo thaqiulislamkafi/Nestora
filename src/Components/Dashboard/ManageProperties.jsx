@@ -9,7 +9,7 @@ const ManageProperties = () => {
   const axiosSecure = useAxios();
   const queryClient = useQueryClient();
 
-  const { data: properties , isLoading , error } = useQuery({
+  const { data: properties, isLoading, error } = useQuery({
     queryKey: ['PropertiesForAdmin'],
     queryFn: async () => {
       const res = await axiosSecure.get('/properties?value=admin');
@@ -22,25 +22,33 @@ const ManageProperties = () => {
       return await axiosSecure.patch(`/property/verify/${id}`);
     },
     onSuccess: () => {
-      Swal.fire('Verified!', 'Property marked as verified.', 'success');
+      Swal.fire({
+        icon: 'success', title: 'Success!', text: 'Property Verified successfully', showConfirmButton: false, timer: 1500
+      });
       queryClient.invalidateQueries(['PropertiesForAdmin']);
     },
     onError: () => {
-      Swal.fire('Error', 'Something went wrong.', 'error');
+      Swal.fire({
+        icon: 'error', title: 'Error', text: 'Failed to Verify property', showConfirmButton: false, timer: 1500
+      });
     }
   });
 
-  
+
   const rejectMutation = useMutation({
     mutationFn: async (id) => {
       return await axiosSecure.patch(`/property/reject/${id}`);
     },
     onSuccess: () => {
-      Swal.fire('Rejected!', 'Property has been rejected.', 'info');
+      Swal.fire({
+        icon: 'success', title: 'Success!', text: 'Property Rejected successfully', showConfirmButton: false, timer: 1500
+      });
       queryClient.invalidateQueries(['PropertiesForAdmin']);
     },
     onError: () => {
-      Swal.fire('Error', 'Something went wrong.', 'error');
+      Swal.fire({
+        icon: 'error', title: 'Error', text: 'Failed to Reject property', showConfirmButton: false, timer: 1500
+      });
     }
   });
 
@@ -48,17 +56,17 @@ const ManageProperties = () => {
   const handleVerify = (id) => verifyMutation.mutate(id);
   const handleReject = (id) => rejectMutation.mutate(id);
 
-  if(isLoading) return <Loading/>
-  if(error) return <Error message={error.message
+  if (isLoading) return <Loading />
+  if (error) return <Error message={error.message
 
-  }/>
+  } />
 
   return (
     <div className="p-6">
-      
+
 
       <div className="overflow-x-auto rounded-xl shadow  min-w-6xl">
-      <h1 className="text-2xl lg:text-3xl font-bold text-center mb-10">Manage Properties</h1>
+        <h1 className="text-2xl lg:text-3xl font-bold text-center mb-10">Manage Properties</h1>
         <table className="table table-zebra">
           <thead className="bg-[#fceb00] text-gray-800">
             <tr>
@@ -74,7 +82,7 @@ const ManageProperties = () => {
           </thead>
           <tbody>
             {properties.map((property, index) => (
-              <tr  key={property._id}>
+              <tr key={property._id}>
                 <td >{index + 1}</td>
                 <td>{property.title}</td>
                 <td>{property.location}</td>
@@ -82,7 +90,7 @@ const ManageProperties = () => {
                 <td>{property.agentEmail}</td>
                 <td>{property.priceRange}</td>
                 <td>
-                  {property.verified  ? (
+                  {property.verified ? (
                     <span className="badge badge-success">Verified</span>
                   ) : property.status == 'rejected' ? (
                     <span className="badge badge-error">Rejected</span>

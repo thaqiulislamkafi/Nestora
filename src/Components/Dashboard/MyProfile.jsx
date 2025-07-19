@@ -7,12 +7,13 @@ import { AuthContext } from '../Provider/AuthProvider';
 import useAxios from '../Hooks/useAxios';
 import Loading from '../SharedElement/Loading';
 import Error from '../SharedElement/Error';
+import Swal from 'sweetalert2';
 
 const MyProfile = () => {
 
 
-  const {currentUser} = use(AuthContext) ;
-  const axiosSecure = useAxios() ;
+  const { currentUser } = use(AuthContext);
+  const axiosSecure = useAxios();
 
   const [editingField, setEditingField] = useState(null);
   const queryClient = useQueryClient();
@@ -21,8 +22,8 @@ const MyProfile = () => {
   const { data: user, isLoading, error } = useQuery({
     queryKey: ['user'],
     queryFn: async () => {
-        const res = await axiosSecure(`/getUser?email=${currentUser.email}`) ;
-        return res.data
+      const res = await axiosSecure(`/getUser?email=${currentUser.email}`);
+      return res.data
     }
   });
 
@@ -33,6 +34,9 @@ const MyProfile = () => {
     onSuccess: () => {
       queryClient.invalidateQueries(['user']);
       setEditingField(null);
+      Swal.fire({
+        icon: 'success', title: 'Success!', text: 'Property Rejected successfully', showConfirmButton: false, timer: 1500
+      });
     }
   });
 
@@ -46,13 +50,13 @@ const MyProfile = () => {
     updateUser(data)
   };
 
-  if (isLoading) return <Loading/>;
-  if (error) return <Error/>;
+  if (isLoading) return <Loading />;
+  if (error) return <Error />;
 
   const fields = [
     { label: 'Full Name', name: 'userName' },
     { label: 'Email', name: 'userEmail', disabled: true },
-    { label: 'Age', name: 'age', type: 'number' },
+    { label: 'User role', name: 'role', type: 'text' },
     { label: 'Blood Group', name: 'bloodGroup' },
     { label: 'Gender', name: 'gender' },
     { label: 'Nationality', name: 'nationality' },
