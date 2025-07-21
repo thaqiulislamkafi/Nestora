@@ -95,14 +95,18 @@ const Navbar = () => {
                 {
                     currentUser ?
                         <div className="flex items-center gap-1">
-                            <Link to={'dashboard/myProfile'}>
-                                <div className="flex items-center gap-2 Button">
-                                    <div className=" bg-[#e6d70c] rounded-full">
-                                        <img className="w-5 rounded-full" src={currentUser.photoURL ? currentUser.photoURL : defaultLogo} alt="" />
+
+                            <div className="tooltip tooltip-bottom" data-tip={currentUser?.displayName}>
+                                <Link to={'dashboard/myProfile'}>
+                                    <div className="flex items-center gap-2 Button">
+                                        <div className=" bg-[#e6d70c] rounded-full">
+                                            <img className="w-5 rounded-full" src={currentUser.photoURL ? currentUser.photoURL : defaultLogo} alt="" />
+                                        </div>
+                                        <span className="hidden lg:flex font-semibold">Dashboard</span>
                                     </div>
-                                    <span className="font-semibold">Dashboard</span>
-                                </div>
-                            </Link>
+                                </Link>
+                            </div>
+
                             <Link onClick={handleSignOut} className="Button bg-[#fceb00]">Sign Out</Link>
                         </div> :
                         <div className="">
@@ -115,8 +119,8 @@ const Navbar = () => {
 
 
                 {/* Mobile menu button */}
-                <div className="dropdown dropdown-end lg:hidden">
-                    <label tabIndex={0} className="btn btn-ghost">
+                <div className="dropdown dropdown-end lg:hidden px-0">
+                    <label tabIndex={0} className="btn btn-ghost ">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-5 w-5"
@@ -134,26 +138,40 @@ const Navbar = () => {
                     </label>
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content mt-3 z-[1] p-2  bg-base-100 rounded-box w-52"
+                        className="menu dropdown-content mt-3 z-[1] p-2  bg-base-100 rounded-box w-52"
                     >
                         <li>
-                            <NavLink to="/services" style={navLinkStyle}>Services</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/coverage" style={navLinkStyle}>Coverage</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/about" style={navLinkStyle}>About Us</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/pricing" style={navLinkStyle}>Pricing</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/beArider" style={navLinkStyle}>Be a Rider</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/signin" style={navLinkStyle}>Sign In</NavLink>
-                        </li>
+                        <NavLink to="/" style={navLinkStyle}>
+                            Home
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/allProperties" style={navLinkStyle}>
+                            All Properties
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/coverage" style={navLinkStyle}>
+                            Coverage
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/about" style={navLinkStyle}>
+                            About Us
+                        </NavLink>
+                    </li>
+
+                    <li>
+                        <NavLink to="/beArider" style={navLinkStyle}>
+                            Be a Agent
+                        </NavLink>
+                    </li>
+
+                    <li>
+                        <NavLink to="/dashboard/myProfile" style={navLinkStyle}>
+                            Dashboard
+                        </NavLink>
+                    </li>
                     </ul>
                 </div>
             </div>

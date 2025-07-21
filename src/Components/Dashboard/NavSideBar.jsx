@@ -69,7 +69,7 @@ const NavSideBar = () => {
                     }
                 >
                     <FaUser className="mr-3" />
-                    <span>My Profile</span>
+                    <span>My {role=='agent' ? 'Agent' : role=='admin' ? 'Admin' : ''} Profile</span>
                 </NavLink>
 
                 {/* Navigation Links for user*/}

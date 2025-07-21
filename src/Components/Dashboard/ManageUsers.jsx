@@ -4,17 +4,21 @@ import { FaTrash, FaUserShield, FaUserTie, FaExclamationTriangle } from 'react-i
 import useAxios from '../Hooks/useAxios';
 import Loading from '../SharedElement/Loading';
 import Error from '../SharedElement/Error';
+import { use } from 'react';
+import { AuthContext } from '../Provider/AuthProvider';
 
 const ManageUsers = () => {
 
   const axiosSecure = useAxios();
   const queryClient = useQueryClient();
 
+  const {currentUser} = use(AuthContext) ;
+
   // Fetch all users
   const { data: users, isLoading, error } = useQuery({
     queryKey: ['allUsers'],
     queryFn: async () => {
-      const res = await axiosSecure.get('/getUsers');
+      const res = await axiosSecure.get(`/getUsers?email=${currentUser.email}`);
       return res.data;
     },
   });

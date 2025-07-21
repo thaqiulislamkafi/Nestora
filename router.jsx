@@ -27,114 +27,119 @@ import AdvertiseProperty from "./src/Components/Dashboard/AdvertiseProperty";
 import Payment from "./src/Components/Dashboard/Payment";
 import MySoldProperties from "./src/Components/Dashboard/MySoldProperties";
 import PrivateRoute from "./src/Components/Route/PrivateRoute";
+import Loading from "./src/Components/SharedElement/Loading";
 
 
 
 export const router = createBrowserRouter([
     {
         path: '/',
-       element : <Home/>,
-       hydrateFallbackElement : <Error/>,
+        element: <Home />,
+        hydrateFallbackElement: <Loading />,
         children: [
             {
-                index :true,
-                element : <Body/>
+                index: true,
+                element: <Body />,
+                hydrateFallbackElement: <Loading />
+
             },
             {
-                path : '/allProperties',
-                element : <PrivateRoute><AllProperties/></PrivateRoute>
+                path: '/allProperties',
+                element: <PrivateRoute><AllProperties /></PrivateRoute>,
+                hydrateFallbackElement: <Loading />
+
             },
             {
-                path : '/propertyDetails/:propertyId',
-                element : <PrivateRoute><PropertyDetails/></PrivateRoute>
+                path: '/propertyDetails/:propertyId',
+                element: <PrivateRoute><PropertyDetails /></PrivateRoute>
             },
-            
-            
+
+
         ]
     },
 
     {
-        path : '/login',
-        element : <Login/>
+        path: '/login',
+        element: <Login />
     },
     {
-        path : '/signup',
-        element : <SignUp/>
+        path: '/signup',
+        element: <SignUp />
     },
     {
-        path : 'dashboard',
-        element : <Dashboard/>,
-        children : [
+        path: 'dashboard',
+        element: <Dashboard />,
+        children: [
             {
-                path : 'myProfile',
-                element : <MyProfile/>
+                path: 'myProfile',
+                element: <MyProfile />
             },
             {
-                path : 'wishlist',
-                element : <UserRoute><Wishlist/></UserRoute>
+                path: 'wishlist',
+                element: <UserRoute><Wishlist /></UserRoute>
             },
             {
-                path : 'property-bought',
-                element : <UserRoute><PropertyBought/></UserRoute>
+                path: 'property-bought',
+                element: <UserRoute><PropertyBought /></UserRoute>
             },
             {
-                path : 'makeOffer/:propertyId',
-                element : <UserRoute><MakeOffer/></UserRoute>
+                path: 'makeOffer/:propertyId',
+                element: <UserRoute><MakeOffer /></UserRoute>
             },
             {
-                path : 'my-reviews',
-                element : <UserRoute><MyReviews/></UserRoute>
+                path: 'my-reviews',
+                element: <UserRoute><MyReviews /></UserRoute>
             },
             {
-                path : 'payment/:propertyId',
-                element : <UserRoute><Payment/></UserRoute>
+                path: 'payment/:propertyId',
+                element: <UserRoute><Payment /></UserRoute>
             },
             {
-                path : 'add-property',
-                element : <AgentRoute><AddProperty/></AgentRoute>
+                path: 'add-property',
+                element: <AgentRoute><AddProperty /></AgentRoute>
             },
             {
-                path : 'my-properties',
-                element : <AgentRoute><AddedProperties/></AgentRoute>
+                path: 'my-properties',
+                element: <AgentRoute><AddedProperties /></AgentRoute>
             },
             {
-                path : 'update-property/:propertyId',
-                element : <AgentRoute><UpdateProperty/></AgentRoute>
+                path: 'update-property/:propertyId',
+                element: <AgentRoute><UpdateProperty /></AgentRoute>
             },
             {
-                path : 'sold-properties',
-                element : <AgentRoute><MySoldProperties/></AgentRoute>
+                path: 'sold-properties',
+                element: <AgentRoute><MySoldProperties /></AgentRoute>
             },
             {
-                path : 'requested-properties',
-                element : <AgentRoute><RequestedProperties/></AgentRoute>
+                path: 'requested-properties',
+                element: <AgentRoute><RequestedProperties /></AgentRoute>
             },
             {
-                path : 'manageProperties',
-                element : <AdminRoute><ManageProperties/></AdminRoute>
+                path: 'manageProperties',
+                element: <AdminRoute><ManageProperties /></AdminRoute>
             },
             {
-                path : 'manageUsers',
-                element : <AdminRoute><ManageUsers/></AdminRoute>
+                path: 'manageUsers',
+                element: <AdminRoute><ManageUsers /></AdminRoute>
             },
             {
-                path : 'manageReviews',
-                element : <AdminRoute><ManageReviews/></AdminRoute>
+                path: 'manageReviews',
+                element: <AdminRoute><ManageReviews /></AdminRoute>
             },
             {
-                path : 'advertiseProperty',
-                element : <AdminRoute><AdvertiseProperty/></AdminRoute>
+                path: 'advertiseProperty',
+                element: <AdminRoute><AdvertiseProperty /></AdminRoute>
             },
         ]
     },
     {
-        path : '*',
-        element : <Error/>
+        path: '*',
+        element: <Error />
     },
     {
-        path : '/unauthorized',
-        element : <Unauthorized/>
+        path: '/unauthorized',
+        element: <Unauthorized />
     }
-    
+
 ])
 

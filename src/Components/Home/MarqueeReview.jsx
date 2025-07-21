@@ -78,7 +78,7 @@ const MarqueeReview = () => {
             direction="left"
             className="py-4"
           >
-            {reviews.map((review) => (
+            {reviews.map((review,index) => (
               <div
                 key={review.id}
                 className="bg-white mx-4 p-6 rounded-2xl shadow-xs w-80 flex-shrink-0 border-l border-[#fceb00] hover:shadow-lg transition-shadow  duration-300"
@@ -96,7 +96,7 @@ const MarqueeReview = () => {
                     )}
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900">{review.reviewerName}</h3>
+                    <h3 className="font-semibold text-gray-900">{index+1}. {review.reviewerName}</h3>
                     <div className="flex items-center">
                       {/* {[...Array(5)].map((_, i) => (
                         <FaStar

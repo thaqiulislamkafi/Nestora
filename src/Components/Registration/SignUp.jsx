@@ -137,12 +137,12 @@ const Registration = () => {
     }
 
     return (
-        <div className="min-h-screen p-14 flex items-center justify-center  inter-font">
+        <div className="min-h-screen md::p-14 flex items-center justify-center  inter-font">
             <div className="w-full  overflow-hidden shadow-xs">
 
                 <div className="flex flex-col lg:flex-row border border-amber-100 rounded-4xl ">
                     {/* Registration Form Section */}
-                    <div className='w-full lg:w-1/2 p-8 lg:p-12  flex justify-center lg:py-16'>
+                    <div className='w-full lg:w-1/2 p-4 py-8 md:p-8 lg:p-12 flex justify-center lg:py-16'>
                         <div className="w-4/6 ">
                             <h2 className="text-3xl font-extrabold text-gray-800 mb-2">Create An Account</h2>
                             <p className="text-gray-600 mb-8">Register with Nestora</p>

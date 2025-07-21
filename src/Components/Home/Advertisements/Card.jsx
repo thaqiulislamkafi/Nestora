@@ -26,7 +26,7 @@ const Card = ({ value, title }) => {
         {/* Property Details */}
         <div className="p-4">
           <div className="flex gap-1.5 items-center mb-2">
-            <h3 className="text-xl font-bold text-gray-800">{ad.title}</h3>
+            <h3 className="text-xl font-bold text-gray-800 line-clamp-1">{ad.title}</h3>
             {ad.verified && (
               <FaCheckCircle className="text-blue-500 text-lg" title="Verified Property" />
             )}

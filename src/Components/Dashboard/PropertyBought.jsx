@@ -92,8 +92,8 @@ const PropertyBought = () => {
                 </div>
 
                 {property?.status === 'bought' && property?.transactionId && (
-                  <div className="text-sm mt-2 text-green-700">
-                    <span className="font-medium">Transaction ID:</span> {property.transactionId}
+                  <div className="text-sm mt-2 text-green-700 ">
+                    <span className="font-medium ">Transaction ID:</span> {property.transactionId}
                   </div>
                 )}
 
