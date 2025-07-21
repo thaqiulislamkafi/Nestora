@@ -1,6 +1,6 @@
 # 🏠 Nestora
 
-**Nestora** is a powerful and modern **MERN stack real estate application** that allows users to explore, list, and manage properties seamlessly. Designed with both **buyers** and **real estate agents** in mind, it features authentication, payment integration, admin management, and more.
+**Nestora** is a powerful and modern **MERN stack real estate application** that allows users to explore, list, and manage properties seamlessly. Designed for **buyers, agents, and admins**, it features authentication, payment integration, role-based dashboards, and more.
 
 🔗 **Live Site:** [Visit Nestora](https://thaqiulislamkafi-assignment-11.netlify.app/)
 
@@ -8,32 +8,47 @@
 
 ## 📌 Features
 
-### 🔐 Firebase Authentication
-Firebase Auth ensures secure user login, registration, and role-based access (admin, agent, user) using email and password.
+### 1. 🔐 Firebase Authentication  
+Secure user login and registration using Firebase. Supports role-based access (Admin, Agent, Buyer).
 
-### 🏘️ Property Listings & Management
-Users can browse listings, while agents can add and manage their properties. Properties include images, pricing, location, and property details.
+### 2. 🧑‍💼 Role-Based Dashboard  
+Custom dashboards for Admins and Agents. Admins manage users and listings, while Agents control their own properties.
 
-### 💳 Stripe Integration
-Stripe is used to securely handle payments for premium property features or rental transactions.
+### 3. 🏘️ Property Listings  
+Dynamic property listing cards with details such as price, location, size, and category (sale/rent).
 
-### 📊 Admin Dashboard
-Admins can manage all users, approve or reject listings, and maintain control over platform content.
+### 4. 🔍 Advanced Property Filtering  
+Users can filter listings based on price, type, location, and availability, providing a smooth property browsing experience.
 
-### 🧑‍💼 Agent Dashboard
-Real estate agents get access to their own dashboard to list, edit, and remove properties.
+### 5. 🏠 Add & Manage Listings  
+Agents can add new properties with image uploads and edit or delete their existing listings from their dashboard.
 
-### ⚡ React Query Integration
-Efficient client-side data management with real-time updates using `@tanstack/react-query`.
+### 6. 💳 Stripe Payment Integration  
+Secure and fast payments for premium listings or featured properties using Stripe.
 
-### ✨ UI Enhancements
-Includes dynamic page titles, animated banners, marquees, sliders, and interactive alerts for a rich user experience.
+### 7. 🧠 Dynamic Page Titles  
+Each route updates the browser tab dynamically using `react-helmet-async` to improve SEO and navigation clarity.
+
+### 8. 🎞️ Swiper Image Carousels  
+Beautiful sliders for property images and homepage banners powered by the `swiper` library.
+
+### 9. 🧾 React Hook Form Integration  
+Clean and validated form handling for listing creation, user registration, and contact inquiries.
+
+### 10. ⚡ Optimized Data Fetching with React Query  
+Efficient and consistent data fetching using `@tanstack/react-query` ensures fast and reliable user interactions.
+
+### 11. 🎯 SweetAlert2 Notifications  
+Interactive success, error, and confirmation popups using SweetAlert2 for key actions like login, payments, and deletions.
+
+### 12. 📱 Fully Responsive UI  
+Mobile-friendly and responsive design using TailwindCSS to ensure accessibility across all device sizes.
 
 ---
 
 ## 🧑‍💻 Admin and Agent Login
 
-To access dashboards and test role-based functionality, use the following credentials:
+To test the platform’s features, use the sample credentials below:
 
 ### 🔑 Admin Account
 - **Email**: `admin@nestora.com`
@@ -43,7 +58,7 @@ To access dashboards and test role-based functionality, use the following creden
 - **Email**: `agent@nestora.com`
 - **Password**: `Agent@123`
 
-> ⚠️ These are example credentials. Ensure actual credentials are handled securely in production with environment configs and protected routes.
+> ⚠️ These are sample credentials for demonstration purposes. Ensure actual credentials are stored and managed securely in production.
 
 ---
 
@@ -87,12 +102,9 @@ To access dashboards and test role-based functionality, use the following creden
 
 ---
 
-## 🚀 Getting Started
+## 📄 Author
 
-### 🖥️ Frontend Setup
+> **Thaqi Ul Islam Kafi**  
+> MERN Stack Developer
 
-```bash
-git clone https://github.com/yourusername/nestora.git
-cd nestora/frontend
-npm install
-npm run dev
+---
