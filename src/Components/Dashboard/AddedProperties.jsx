@@ -8,6 +8,14 @@ import Error from '../SharedElement/Error';
 import Loading from '../SharedElement/Loading';
 import { Link } from 'react-router';
 
+const splitPrice = (priceRange)=>{
+  const [min, max] = priceRange.replace(/[^\d-]/g, '').split('-');
+  return [min, max];
+      // setMinPrice(prices[0]);
+      // setMaxPrice(prices[1]);
+      // return [prices[0],prices[1]] ;
+}
+
 const AddedProperties = () => {
   const queryClient = useQueryClient();
   const [minPrice, setMinPrice] = useState('');
@@ -42,16 +50,6 @@ const AddedProperties = () => {
   });
 
 
-  useEffect(() => {
-    if (properties) {
-      properties.forEach(property => {
-        const prices = property.priceRange.replace(/[^\d–]/g, '').split('–');
-        setMinPrice(prices[0]);
-        setMaxPrice(prices[1]);
-      });
-    }
-  }, [properties]);
-
   const handleDelete = (id) => {
 
     Swal.fire({title: 'Are you sure?',text: "You won't be able to revert this!",icon: 'warning',showCancelButton: true,confirmButtonColor: '#3085d6',cancelButtonColor: '#d33',confirmButtonText: 'Yes, delete it!'
@@ -78,7 +76,7 @@ const AddedProperties = () => {
   }
 
   return (
-    <div className="w-4/5 mx-auto py-6">
+    <div className="w-fit mx-auto py-6">
       <h1 className="text-2xl font-bold mb-6">My Added Properties</h1>
 
       <div className="grid grid-cols-1  gap-6">
@@ -87,7 +85,7 @@ const AddedProperties = () => {
             key={property._id}
             className=" dark:bg-gray-800 rounded-xl shadow-xs overflow-hidden transition-all hover:shadow-lg shadow-amber-300"
           >
-            <div className="flex flex-col border-b border-[#e6d70c] lg:flex-row h-full  ">
+            <div className="flex flex-col border-b border-[#e6d70c] md:flex-row h-full  ">
               {/* Property Image */}
               <div className="  bg-transparent lg:p-4 rounded-xl lg:w-[29.13vw] h-auto">
                 <img
@@ -108,11 +106,11 @@ const AddedProperties = () => {
                     <span>Location: {property.location}</span>
                     <span className="flex items-center">
                       Verification:{' '}
-                      {property.verified === 'verified' ? (
+                      {property.verified ? (
                         <span className="flex items-center text-green-500 ml-1">
                           <FaCheckCircle className="ml-1 mr-1" /> Verified
                         </span>
-                      ) : property.verified === 'rejected' ? (
+                      ) : property.status === 'rejected' ? (
                         <span className="flex items-center text-red-500 ml-1">
                           <FaTimesCircle className="ml-1 mr-1" /> Rejected
                         </span>
@@ -124,24 +122,22 @@ const AddedProperties = () => {
                     </span>
                   </div>
 
-                  <p className="font-medium my-2 text-sm lg:text-base">
-                    Agent Name:{' '}
+                  <p className="font-medium my-2 text-sm lg:text-base flex items-center gap-2">
+                    Agent Name: <img src={property.agentImage} className='w-4 rounded-full' alt="" />
                     <span className="text-[#23BE0A] font-bold">
                       {property.agentName}
                     </span>
                   </p>
 
-                  <p className="font-medium my-2 text-sm lg:text-base">
-                    Price Range:{' '}
-                    <span className="text-[#23BE0A] font-bold">
-                      {property.priceRange}
-                    </span>
+                  <p className='flex items-center gap-2 font-semibold my-2 line-clamp-1'>
+                    Min Price : <span className='text-[#23BE0A] line-clamp-1'>{splitPrice(property.priceRange)[0]}</span>
+                    Max Price : <span className='text-[#23BE0A] line-clamp-1'>{splitPrice(property.priceRange)[1]}</span>
                   </p>
                 </div>
 
                 <div className="flex flex-wrap gap-2 pt-1">
-                  {property.verified !== 'rejected' && (
-                    <Link
+                  {property.status !== 'rejected' && (
+                    <Link 
                       to={`/dashboard/update-property/${property._id}`}
                       className="btn btn-sm  rounded-lg flex"
                     >

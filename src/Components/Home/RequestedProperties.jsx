@@ -67,6 +67,7 @@ const RequestedProperties = () => {
                 <td className="font-medium capitalize">
                   {offer.status === 'pending' && <span className="text-yellow-600">Pending</span>}
                   {offer.status === 'accepted' && <span className="text-green-600">Accepted</span>}
+                  {offer.status === 'bought' && <span className="text-green-600">Accepted</span>}
                   {offer.status === 'rejected' && <span className="text-red-600">Rejected</span>}
                 </td>
                 <td>

@@ -98,7 +98,7 @@ const Wishlist = () => {
                                 </div>
 
                                 <div className="flex items-center gap-2 my-1 text-gray-600">
-                                    <FaRegUserCircle className="text-sm" />
+                                    <img src={property?.agentImage} alt="" className='w-4 rounded-full' />
                                     <span className="inter-font text-xs">{property.agentName}(Agent)</span>
                                 </div>
 
@@ -112,7 +112,7 @@ const Wishlist = () => {
                                         onClick={() => handleReject(property._id)}
                                         className="btn btn-sm rounded-lg "
                                     >
-                                        <FaTimes /> Reject
+                                        <FaTimes /> Remove
                                     </button>
                                     <button
                                         onClick={() => handleMakeOffer(property._id)}

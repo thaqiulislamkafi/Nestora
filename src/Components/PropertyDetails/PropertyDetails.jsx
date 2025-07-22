@@ -19,7 +19,7 @@ const PropertyDetails = () => {
     const queryClient = useQueryClient();
 
     const { currentUser } = use(AuthContext);
-    const {role} = UseUserRole() ;
+    const { role } = UseUserRole();
 
     const [isOpen, setIsOpen] = useState(false);
     const { register, handleSubmit } = useForm();
@@ -59,12 +59,12 @@ const PropertyDetails = () => {
     })
 
     const postMutation = useMutation({
-        mutationFn : async(reviewData)=>{
-            const {data} = await axiosSecure.post('/postReview',reviewData)
-            return data ;
+        mutationFn: async (reviewData) => {
+            const { data } = await axiosSecure.post('/postReview', reviewData)
+            return data;
         },
-        onSuccess : ()=>{
-            queryClient.invalidateQueries(['reviews']) ;
+        onSuccess: () => {
+            queryClient.invalidateQueries(['reviews']);
             Swal.fire({
                 icon: 'success', title: 'Success!', text: 'Posted Review Successfully', showConfirmButton: false, timer: 1500
             });
@@ -84,12 +84,12 @@ const PropertyDetails = () => {
             reviewerEmail: currentUser.email,
             description: data.description,
             rating: 5,
-            propertyTitle : property.title,
-            propertyId : property._id,
-            reviewTime : new Date().toISOString().split('T')[0]
+            propertyTitle: property.title,
+            propertyId: property._id,
+            reviewTime: new Date().toISOString()
         };
-        postMutation.mutate(reviewData) ;
-        
+        postMutation.mutate(reviewData);
+
     }
 
     if (isLoading)
@@ -103,7 +103,9 @@ const PropertyDetails = () => {
         <div>
             <div className='bg-gray-100 text-center py-16 rounded-xl px-4 lg:px-16 dark:bg-gray-700'>
                 <p className='text-3xl md:text-4xl my-3 poppins font-bold'>Property Details</p>
-                <p className='text-gray-800 my-2 text-xs md:text-sm dark:text-gray-200'>Explore everything you need to know about this exciting Nestora! Get the full details on dates, venue, featured performers, and schedules. You can like a Nestora multiple times as your wish which is count as a rating of a Nestora.</p>
+                <p className='text-gray-800 my-2  md:text-lg  font-semibold'>Discover <span className='text-[#23BE0A]'>{property?.title}</span> with modern amenities and thoughtful design.
+                    Located in <span className='text-[#23BE0A]'>{property?.location}</span>, offering both comfort and convenience.
+                    An ideal choice for families and individuals seeking quality living</p>
 
 
             </div>
@@ -185,6 +187,14 @@ const PropertyDetails = () => {
                 <p className='poppins text-xl lg:text-3xl my-1 font-bold'>Reviews</p>
                 <div className='border-t-2 border-dashed border-gray-200 my-6'></div>
                 <div className='my-10 flex flex-col md:flex-row'>
+
+                    {reviews.length === 0 && <>
+                    
+                    <p className='text-gray-800 font-semibold  text-center mx-auto md:text-lg'>There is no review of this <span className='text-[#23BE0A]'>{property.title}</span> property</p>
+                    
+                    </>
+                    }
+
                     {reviews.map((review) => (
                         <div
                             key={review.id}

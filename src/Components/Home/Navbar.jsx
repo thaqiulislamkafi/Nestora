@@ -1,8 +1,9 @@
 import React, { use } from "react";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import { signOut } from "firebase/auth";
 import { auth } from "../Firebase/authentication";
 import { AuthContext } from "../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 
 const Navbar = () => {
@@ -24,14 +25,19 @@ const Navbar = () => {
     };
 
     const { currentUser } = use(AuthContext);
+    const navigate  = useNavigate() ;
 
     const defaultLogo = 'https://img.icons8.com/?size=80&id=ckaioC1qqwCu&format=png'
 
 
-    const handleSignOut = async () => {
+   const handleSignOut = async () => {
         try {
             await signOut(auth);
-            console.log('User signed out successfully');
+            Swal.fire({
+                icon: 'success', title: 'Sign Out', text: 'User Signed Out', showConfirmButton: false, timer: 1500
+            });
+            navigate('/') ;
+
 
         } catch (error) {
             console.error('Error signing out:', error.message);
@@ -44,7 +50,7 @@ const Navbar = () => {
     return (
         <div className="navbar bg-base-100 rounded-2xl urbanist-font py-8 px-0">
             {/* Nav-first - Logo and App Name */}
-            <div className="navbar-start">
+            <div className="navbar-start relative">
                 <NavLink to="/" className="flex items-center ">
                     <div className="">
                         <img
@@ -53,7 +59,7 @@ const Navbar = () => {
                             className="w-full h-auto"
                         />
                     </div>
-                    <span className="font-bold text-xl mt-3">Nestora</span>
+                    <span className="font-extrabold text-2xl mt-5 -ml-3">Nestora</span>
                 </NavLink>
             </div>
 
@@ -141,37 +147,37 @@ const Navbar = () => {
                         className="menu dropdown-content mt-3 z-[1] p-2  bg-base-100 rounded-box w-52"
                     >
                         <li>
-                        <NavLink to="/" style={navLinkStyle}>
-                            Home
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/allProperties" style={navLinkStyle}>
-                            All Properties
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/coverage" style={navLinkStyle}>
-                            Coverage
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/about" style={navLinkStyle}>
-                            About Us
-                        </NavLink>
-                    </li>
+                            <NavLink to="/" style={navLinkStyle}>
+                                Home
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/allProperties" style={navLinkStyle}>
+                                All Properties
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/coverage" style={navLinkStyle}>
+                                Coverage
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/about" style={navLinkStyle}>
+                                About Us
+                            </NavLink>
+                        </li>
 
-                    <li>
-                        <NavLink to="/beArider" style={navLinkStyle}>
-                            Be a Agent
-                        </NavLink>
-                    </li>
+                        <li>
+                            <NavLink to="/beArider" style={navLinkStyle}>
+                                Be a Agent
+                            </NavLink>
+                        </li>
 
-                    <li>
-                        <NavLink to="/dashboard/myProfile" style={navLinkStyle}>
-                            Dashboard
-                        </NavLink>
-                    </li>
+                        <li>
+                            <NavLink to="/dashboard/myProfile" style={navLinkStyle}>
+                                Dashboard
+                            </NavLink>
+                        </li>
                     </ul>
                 </div>
             </div>

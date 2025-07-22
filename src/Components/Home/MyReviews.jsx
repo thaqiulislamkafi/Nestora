@@ -13,7 +13,6 @@ const MyReviews = () => {
     const { currentUser } = use(AuthContext);
     const queryClient = useQueryClient();
 
-    // Fetch reviews by user email
     const { data: reviews = [], isLoading } = useQuery({
         queryKey: ['myReviews', currentUser?.email],
         queryFn: async () => {
@@ -23,7 +22,7 @@ const MyReviews = () => {
         enabled: !!currentUser?.email
     });
 
-    // Delete review
+
     const deleteMutation = useMutation({
         mutationFn: async (id) => {
             return await axiosSecure.delete(`/review/${id}`);
@@ -56,7 +55,7 @@ const MyReviews = () => {
         });
     };
 
-    if (isLoading) return <Loading/>;
+    if (isLoading) return <Loading/> ;
 
     return (
         <Bounce cascade damping={0.09} triggerOnce>
@@ -126,7 +125,8 @@ const MyReviews = () => {
                                         <div className="flex items-center mt-1">
                                             <FaRegClock className="mr-2" />
                                             <span>
-                                                {review.reviewTime}
+                                        
+                                                {new Date(review.reviewTime).toISOString().split('T')[0]}
                                             </span>
                                         </div>
                                     </div>

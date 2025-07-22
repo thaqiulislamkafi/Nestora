@@ -2,7 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router';
 import {
   FaUser, FaHeart, FaHome, FaStar, FaTasks, FaUsersCog,
-  FaStarHalfAlt, FaBullhorn, FaPlusCircle, FaCheckCircle, FaHandshake
+  FaStarHalfAlt, FaBullhorn, FaPlusCircle, FaCheckCircle, FaHandshake,
+  FaHouseUser
 } from 'react-icons/fa';
 import UseUserRole from '../Hooks/useUserRole';
 
@@ -12,13 +13,14 @@ const BreadcrumbsNav = () => {
 
 
   const commonLinks = [
+    { to: '/', label: 'Home', icon: <FaHouseUser /> },
     { to: '/dashboard/myProfile', label: 'My Profile', icon: <FaUser /> },
   ];
 
   const userLinks = [
     { to: '/dashboard/payment-history', label: 'Payment History', icon: <FaTasks /> },
     { to: '/dashboard/wishlist', label: 'Wishlist', icon: <FaHeart /> },
-    { to: '/dashboard/property-bought', label: 'Bought', icon: <FaHome /> },
+    { to: '/dashboard/property-bought', label: 'Bought Properties', icon: <FaHome /> },
     { to: '/dashboard/my-reviews', label: 'My Reviews', icon: <FaStar /> },
   ];
 
@@ -26,14 +28,14 @@ const BreadcrumbsNav = () => {
     { to: '/dashboard/manageProperties', label: 'Manage Properties', icon: <FaTasks /> },
     { to: '/dashboard/manageUsers', label: 'Manage Users', icon: <FaUsersCog /> },
     { to: '/dashboard/manageReviews', label: 'Manage Reviews', icon: <FaStarHalfAlt /> },
-    { to: '/dashboard/advertiseProperty', label: 'Advertise', icon: <FaBullhorn /> },
+    { to: '/dashboard/advertiseProperty', label: 'Advertise Property', icon: <FaBullhorn /> },
   ];
 
   const agentLinks = [
     { to: '/dashboard/add-property', label: 'Add Property', icon: <FaPlusCircle /> },
-    { to: '/dashboard/my-properties', label: 'My Properties', icon: <FaHome /> },
-    { to: '/dashboard/sold-properties', label: 'Sold', icon: <FaCheckCircle /> },
-    { to: '/dashboard/requested-properties', label: 'Requested', icon: <FaHandshake /> },
+    { to: '/dashboard/my-properties', label: 'My Added Properties', icon: <FaHome /> },
+    { to: '/dashboard/sold-properties', label: 'My Sold Properties', icon: <FaCheckCircle /> },
+    { to: '/dashboard/requested-properties', label: 'Requested Properties', icon: <FaHandshake /> },
   ];
 
   let roleLinks = [];

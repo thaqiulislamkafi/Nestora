@@ -3,26 +3,36 @@ import { NavLink, useNavigate } from 'react-router';
 import { FaHome, FaHistory, FaSignOutAlt, FaBoxOpen, FaUser, FaHeart, FaStar, FaPlusCircle, FaCheckCircle, FaHandshake, FaTasks, FaUsersCog, FaStarHalfAlt, FaBullhorn, } from 'react-icons/fa';
 import { AuthContext } from '../Provider/AuthProvider';
 import UseUserRole from '../Hooks/useUserRole';
+import { signOut } from 'firebase/auth';
+import { auth } from '../Firebase/authentication';
+import Swal from 'sweetalert2';
 // import UseUserRole from '../Hooks/UseUserRole';
 
 const NavSideBar = () => {
-    const navigate = useNavigate();
 
+    const navigate = useNavigate();
     const { currentUser } = use(AuthContext);
     const { role } = UseUserRole();
 
 
-
-    const handleLogout = () => {
-        // Add your logout logic here
-        console.log("User logged out");
-        navigate('/login');
-    };
+    const handleLogout = async () => {
+            try {
+                await signOut(auth);
+                Swal.fire({
+                    icon: 'success', title: 'Sign Out', text: 'User Signed Out', showConfirmButton: false, timer: 1500
+                });
+                navigate('/') ;
+    
+    
+            } catch (error) {
+                console.error('Error signing out:', error.message);
+            }
+        };
 
     return (
-        <div className="h-full flex flex-col">
+        <div className="h-full flex flex-col w-full ">
 
-            {/* User Profile Section */}
+            {/* User Profile Section  */}
             {/* <div className="flex items-center  ">
                 <div className="">
                     <div className="w-12 rounded-full">
@@ -58,11 +68,11 @@ const NavSideBar = () => {
 
             {/* Navigation Links */}
 
-            <div className="flex-1 px-7 space-y-2">
+            <div className="flex-1 px-7 space-y-2 ">
                 <NavLink
                     to="/dashboard/myProfile"
                     className={({ isActive }) =>
-                        `flex items-center p-3 rounded-lg transition-colors ${isActive
+                        `flex items-center p-3  rounded-lg transition-colors ${isActive
                             ? 'bg-[#fceb00] text-gray-900 font-medium'
                             : 'hover:bg-gray-100 text-gray-700'
                         }`
@@ -76,7 +86,7 @@ const NavSideBar = () => {
 
                 {
                     (role === 'user') &&
-                    <div>
+                    <>
 
                         <NavLink
                             to="/dashboard/payment-history"
@@ -113,7 +123,7 @@ const NavSideBar = () => {
                             }
                         >
                             <FaHome className="mr-3" />
-                            <span>Property Bought</span>
+                            <span>Property Bought </span>
                         </NavLink>
 
                         <NavLink
@@ -129,7 +139,7 @@ const NavSideBar = () => {
                             <span>My Reviews</span>
                         </NavLink>
 
-                    </div>
+                    </>
                 }
 
 
@@ -260,10 +270,10 @@ const NavSideBar = () => {
 
             </div>
 
-            <div className='divider'></div>
+            <div className='divider my-0'></div>
 
             {/* Logout Button */}
-            <div className="p-4 ">
+            <div className="px-7 my-2">
                 <button
                     onClick={handleLogout}
                     className="flex items-center w-full p-3 rounded-lg text-red-500 hover:bg-red-50 transition-colors"

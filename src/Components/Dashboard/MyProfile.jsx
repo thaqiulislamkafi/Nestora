@@ -56,7 +56,7 @@ const MyProfile = () => {
   const fields = [
     { label: 'Full Name', name: 'userName' },
     { label: 'Email', name: 'userEmail', disabled: true },
-    { label: 'User role', name: 'role', type: 'text' },
+    { label: 'Age', name: 'Age', type: 'text' },
     { label: 'Blood Group', name: 'bloodGroup' },
     { label: 'Gender', name: 'gender' },
     { label: 'Nationality', name: 'nationality' },
@@ -76,11 +76,11 @@ const MyProfile = () => {
 
       <div className="flex flex-col items-center mb-10">
         <img
-          src={user?.userPhoto || 'https://i.ibb.co/2N1hYS0/default-avatar.png'}
-          alt="Avatar"
+          src={user?.userPhoto || 'https://img.icons8.com/?size=80&id=ckaioC1qqwCu&format=png'}
+          alt="Propic"
           className="w-28 h-28 rounded-full border-4 border-gray-200 object-cover mb-2"
         />
-        <p className="text-lg font-medium text-gray-700">{user?.userName || 'Set your name'}</p>
+        <p className="text-lg font-medium text-gray-700">{user?.userName || 'Set your name'} {(user.role !== 'user' && `(${user.role})`)}</p>
         <p className="text-gray-500">{user?.userEmail}</p>
       </div>
 

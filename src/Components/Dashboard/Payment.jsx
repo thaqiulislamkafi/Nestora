@@ -4,7 +4,7 @@ import { Elements, CardElement, useStripe, useElements } from '@stripe/react-str
 import useAxios from '../Hooks/useAxios';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import Loading from '../SharedElement/Loading';
 import { AuthContext } from '../Provider/AuthProvider';
 
@@ -16,6 +16,7 @@ const Payment = () => {
     const axiosSecure = useAxios();
     const { currentUser } = use(AuthContext)
     const { propertyId } = useParams();
+
 
     const { data: property, isLoading } = useQuery({
         queryKey: ['property-payment', propertyId],
@@ -47,8 +48,11 @@ const CheckoutForm = ({ property }) => {
     const stripe = useStripe();
     const elements = useElements();
     const axiosSecure = useAxios();
+
     const [error, setError] = useState('');
     const [processing, setProcessing] = useState(false);
+    const navigate = useNavigate() ;
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -92,6 +96,8 @@ const CheckoutForm = ({ property }) => {
                     setError('');
                     if (result.paymentIntent.status === 'succeeded') {
                         Swal.fire('Success!', 'Payment completed successfully.', 'success');
+                        navigate('/dashboard/property-bought')
+                        
                     }
                 }
             }

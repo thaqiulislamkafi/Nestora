@@ -61,7 +61,7 @@ const PropertyBought = () => {
                 </div>
 
                 <div className="flex items-center gap-2 my-1 text-gray-600">
-                  <FaRegUserCircle className="text-sm" />
+                  <img src={property?.agentImage} alt="" className='w-4 rounded-full'/>
                   <span className="inter-font text-xs">{property.agentName} (Agent)</span>
                 </div>
 

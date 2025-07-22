@@ -2,7 +2,7 @@
 
 **Nestora** is a powerful and modern **MERN stack real estate application** that allows users to explore, list, and manage properties seamlessly. Designed for **buyers, agents, and admins**, it features authentication, payment integration, role-based dashboards, and more.
 
-🔗 **Live Site:** [Visit Nestora](https://thaqiulislamkafi-assignment-11.netlify.app/)
+🔗 **Live Site:** [Visit Nestora](https://thaqiulislamkafi-assignment-12.netlify.app/)
 
 ---
 
@@ -51,12 +51,12 @@ Mobile-friendly and responsive design using TailwindCSS to ensure accessibility 
 To test the platform’s features, use the sample credentials below:
 
 ### 🔑 Admin Account
-- **Email**: `admin@nestora.com`
-- **Password**: `Admin@123`
+- **Email**: `admin1@gmail.com`
+- **Password**: `123456A@`
 
 ### 🧑 Agent Account
-- **Email**: `agent@nestora.com`
-- **Password**: `Agent@123`
+- **Email**: `agent@gmail.com`
+- **Password**: `123456A@`
 
 > ⚠️ These are sample credentials for demonstration purposes. Ensure actual credentials are stored and managed securely in production.
 
@@ -105,6 +105,6 @@ To test the platform’s features, use the sample credentials below:
 ## 📄 Author
 
 > **Thaqi Ul Islam Kafi**  
-> MERN Stack Developer
+> Batch - 11, Programming Hero
 
 ---

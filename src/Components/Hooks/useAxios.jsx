@@ -3,15 +3,18 @@ import { useNavigate } from 'react-router';
 import axios from "axios";
 import { AuthContext } from '../Provider/AuthProvider';
 import Loading from '../SharedElement/Loading';
+import {  getIdToken } from 'firebase/auth';
+import { auth } from '../Firebase/authentication';
 
 
-// export const axiosSecure = axios.create({
-//     baseURL : `http://localhost:5000`
-// })
 
 export const axiosSecure = axios.create({
-    baseURL : `https://assignment-12serversite.vercel.app`, 
+    baseURL : `http://localhost:5000`
 })
+
+// export const axiosSecure = axios.create({
+//     baseURL : `https://assignment-12serversite.vercel.app`, 
+// })
 
 const useAxios = ()=>{
 
@@ -21,12 +24,17 @@ const useAxios = ()=>{
     if (loading)
         return <Loading />
 
-    axiosSecure.interceptors.request.use(config => {
-        config.headers.Authorization = `Bearer ${currentUser?.accessToken}`;
-        return config
-    }, error => {
-        return Promise.reject(error)
-    })
+    axiosSecure.interceptors.request.use(
+        async (config) => {
+          const user = auth?.currentUser;
+          if (user) {
+            const token = await getIdToken(user); 
+            config.headers.Authorization = `Bearer ${token}`;
+          }
+          return config;
+        },
+        (error) => Promise.reject(error)
+      );
 
     axiosSecure.interceptors.response.use(res => {
         return res;

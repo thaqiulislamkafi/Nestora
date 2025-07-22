@@ -41,7 +41,7 @@ const Card = ({ value, title }) => {
             (title == 'Properties') ?
               <div className='flex items-center gap-2 my-1 text-gray-600'>
                 <div>
-                  <FaRegUserCircle />
+                  <img src={ad.agentImage} alt="" className='w-4'/>
                 </div>
                 <div className='inter-font text-sm'>{ad.agentName}(Agent)</div>
               </div> : ''
