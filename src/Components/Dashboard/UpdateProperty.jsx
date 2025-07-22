@@ -17,11 +17,13 @@ const PropertyUpdateForm = () => {
 
     const { propertyId } = useParams();
     const navigate = useNavigate();
+
     const queryClient = useQueryClient();
     const { currentUser } = use(AuthContext);
-    const axiosSecure = useAxios();
 
-    const [imageUrl, setImageUrl] = useState('');
+    const axiosSecure = useAxios();
+    const [isUploading,setIsUploading] = useState(false) ;
+
 
 
     const { data, isLoading, error } = useQuery({
@@ -34,6 +36,9 @@ const PropertyUpdateForm = () => {
     });
 
     const property = data?.result || '' ;
+
+    const [imageUrl, setImageUrl] = useState(property.image);
+
 
     const { register, handleSubmit, formState: { errors, } } = useForm();
 
@@ -62,6 +67,8 @@ const PropertyUpdateForm = () => {
 
 
     const handleImageUpload = async (e) => {
+
+        setIsUploading(true);
         const file = e.target.files[0];
         console.log(file)
         if (!file) return;
@@ -76,6 +83,7 @@ const PropertyUpdateForm = () => {
                 formData
             );
             setImageUrl(response.data.data.url);
+            setIsUploading(false) ;
 
         } catch (error) {
             console.error('Image upload failed:', error);
@@ -133,6 +141,7 @@ const PropertyUpdateForm = () => {
                                 <div>
                                     <label className="btn btn-outline cursor-pointer">
                                         <FaUpload className="mr-2" />
+                                        {isUploading && <>uploading..</>}
                                         <input
                                             type="file"
                                             className="hidden"
@@ -218,28 +227,6 @@ const PropertyUpdateForm = () => {
                                     <label className="label">
                                         <span className="label-text-alt text-red-600">{errors.required}</span>
                                     </label>
-                                )}
-                            </div>
-                        </div>
-
-                        {/* Verification Status (readonly) */}
-                        <div className="form-control flex items-center gap-3">
-                            <label className="label">
-                                <span className="label-text">Verification Status : </span>
-                            </label>
-                            <div className="flex items-center">
-                                {property.verified === 'verified' ? (
-                                    <span className="badge badge-success gap-2">
-                                        <FaCheckCircle /> Verified
-                                    </span>
-                                ) : property.verified === 'rejected' ? (
-                                    <span className="badge badge-error gap-2">
-                                        <FaTimesCircle /> Rejected
-                                    </span>
-                                ) : (
-                                    <span className="badge badge-warning gap-2">
-                                        Pending Verification
-                                    </span>
                                 )}
                             </div>
                         </div>

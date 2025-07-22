@@ -120,7 +120,16 @@ const PropertyDetails = () => {
 
                     {/* <p className='text-[#176AE5] text-xs px-3 py-2 bg-[#1769e51c] rounded-2xl w-fit my-2 dark:text-gray-200'># {property.category} </p> */}
 
-                    <p className='poppins my-2 text-xl lg:text-3xl font-bold'>{property?.title}</p>
+                    <div className='flex items-center gap-1 my-2'>
+                        <p className='poppins text-xl lg:text-3xl font-bold'>{property?.title}</p>
+                        {
+                            property.isBought && <p className='text-[#23BE0A] font-bold text-lg lg:text-2xl'>
+                                (Bought)
+                            </p>
+                        }
+                    </div>
+
+
                     <p className='flex flex-col gap-2 my-2 text-sm lg:text-xl'>
                         <span>Location : {property.location}</span>
                         <span>Verified : {`${property.verified}
@@ -131,7 +140,8 @@ const PropertyDetails = () => {
                         agentName}</span></p>
                     <p className='font-medium my-2 text-sm lg:text-lg'>Price Range : <span className='text-[#23BE0A] font-bold'>{property.priceRange}</span></p>
 
-                    <button disabled={!isUser()} onClick={handleWishlist} className='btn btn-sm btn-ghost border-amber-300 rounded-3xl my-2 Button'>Add to Whishlist</button>
+
+                    <button disabled={(!isUser() || property.isBought)} onClick={handleWishlist} className='btn btn-sm btn-ghost border-amber-300 rounded-3xl my-2 Button'>Add to Whishlist</button>
 
 
                 </div>
@@ -189,9 +199,9 @@ const PropertyDetails = () => {
                 <div className='my-10 flex flex-col md:flex-row'>
 
                     {reviews.length === 0 && <>
-                    
-                    <p className='text-gray-800 font-semibold  text-center mx-auto md:text-lg'>There is no review of this <span className='text-[#23BE0A]'>{property.title}</span> property</p>
-                    
+
+                        <p className='text-gray-800 font-semibold  text-center mx-auto md:text-lg'>There is no review of this <span className='text-[#23BE0A]'>{property.title}</span> property</p>
+
                     </>
                     }
 
