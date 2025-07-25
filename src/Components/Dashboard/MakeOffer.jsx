@@ -107,7 +107,8 @@ const MakeOffer = () => {
                 <h2 className="card-title text-2xl font-bold my-4">Make an Offer</h2>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 ">
-                    {/* Property Title (readonly) */}
+
+                    {/* Property Title */}
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-6">
                         <div className="form-control">
@@ -124,7 +125,8 @@ const MakeOffer = () => {
                             />
                         </div>
 
-                        {/* Property Location (readonly) */}
+                        {/* Property Location */}
+
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text flex items-center">
@@ -139,7 +141,8 @@ const MakeOffer = () => {
                             />
                         </div>
 
-                        {/* Agent Name (readonly) */}
+                        {/* Agent Name */}
+
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text flex items-center">
@@ -154,7 +157,8 @@ const MakeOffer = () => {
                             />
                         </div>
 
-                        {/* Buyer Email (readonly) */}
+                        {/* Buyer Email */}
+                    
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text flex items-center">
@@ -169,7 +173,8 @@ const MakeOffer = () => {
                             />
                         </div>
 
-                        {/* Buyer Name (readonly) */}
+                        {/* Buyer Name */}
+                        
                         <div className="form-control md:col-span-2">
                             <label className="label">
                                 <span className="label-text flex items-center">
@@ -185,6 +190,7 @@ const MakeOffer = () => {
                         </div>
 
                         {/* Offer Amount */}
+
                         <div className="form-control md:col-span-2">
                             <label className="label">
                                 <span className="label-text">Offer Amount (৳)</span>
@@ -210,7 +216,10 @@ const MakeOffer = () => {
                             )}
                         </div>
 
+
                         {/* Buying Date */}
+
+
                         <div className="form-control md:col-span-2">
                             <label className="label">
                                 <span className="label-text flex items-center">

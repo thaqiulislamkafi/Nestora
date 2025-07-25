@@ -7,13 +7,12 @@ import Swal from "sweetalert2";
 
 
 const Navbar = () => {
-    // Style for active and normal links
+   
 
     const navLinkStyle = ({ isActive }) => {
         return {
             fontWeight: isActive ? "800" : "600",
             color: isActive ? "white" : "#334155",
-            // backgroundColor: isActive ? "#e6d70c" : "transparent",
             borderRadius: "1.3rem",
             padding: "0.5rem 1rem",
             transition: "all 0.3s ease",
@@ -49,12 +48,12 @@ const Navbar = () => {
 
     return (
         <div className="navbar bg-base-100 rounded-2xl urbanist-font py-8 px-0">
-            {/* Nav-first - Logo and App Name */}
+            
             <div className="navbar-start relative">
                 <NavLink to="/" className="flex items-center ">
                     <div className="">
                         <img
-                            src="https://i.postimg.cc/0yHTF6Kn/logo.png" // Replace with your logo path
+                            src="https://i.postimg.cc/0yHTF6Kn/logo.png" 
                             alt="App Logo"
                             className="w-full h-auto"
                         />
@@ -63,7 +62,8 @@ const Navbar = () => {
                 </NavLink>
             </div>
 
-            {/* Nav-mid - Navigation Links */}
+            
+
             <div className="navbar-center hidden px-5 py-2.5 rounded-4xl lg:flex bg-[#fceb00] font-bold">
                 <ul className=" menu-horizontal px-1 gap-1">
                     <li>
@@ -95,7 +95,7 @@ const Navbar = () => {
                 </ul>
             </div>
 
-            {/* Nav-last - Action Buttons */}
+          
             <div className="navbar-end gap-2">
 
                 {
@@ -125,6 +125,7 @@ const Navbar = () => {
 
 
                 {/* Mobile menu button */}
+                
                 <div className="dropdown dropdown-end lg:hidden px-0">
                     <label tabIndex={0} className="btn btn-ghost ">
                         <svg

@@ -36,16 +36,16 @@ const MySoldProperties = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 
         {/* Daily Earnings */}
+
         <div className="bg-base-100 p-4 rounded-lg shadow-sm">
           <div className="flex items-center mb-2">
             <FaChartLine className="text-green-500 mr-2" />
             <h3 className="font-semibold">Totals Earnings</h3>
           </div>
-          <p className="text-3xl font-bold">${total}</p>
+          <p className="text-3xl font-bold">${total} </p>
           <p className="text-sm text-gray-500">From {soldProperties.length} deliveries</p>
         </div>
 
-        {/* Monthly Earnings */}
         <div className="bg-base-100 p-4 rounded-lg shadow-sm">
           <div className="flex items-center mb-2">
             <FaChartLine className="text-blue-500 mr-2" />
@@ -55,7 +55,6 @@ const MySoldProperties = () => {
           <p className="text-sm text-gray-500">From {''} deliveries</p>
         </div>
 
-        {/* Yearly Earnings */}
         <div className="bg-base-100 p-4 rounded-lg shadow-sm">
           <div className="flex items-center mb-2">
             <FaChartLine className="text-purple-500 mr-2" />
@@ -81,6 +80,7 @@ const MySoldProperties = () => {
               <th>Buyer Name</th>
               <th>Buyer Email</th>
               <th>Sold Price</th>
+              <th>My Earn</th>
             </tr>
           </thead>
           <tbody>
@@ -92,6 +92,7 @@ const MySoldProperties = () => {
                 <td>{item.buyerName}</td>
                 <td>{item.buyerEmail}</td>
                 <td>৳ {Number(item.price).toLocaleString()}</td>
+                <td>5% of ৳ {Number(item.price).toLocaleString()}</td>
               </tr>
             ))}
           </tbody>

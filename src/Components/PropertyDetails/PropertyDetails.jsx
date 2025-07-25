@@ -153,7 +153,7 @@ const PropertyDetails = () => {
                         <h3 className="font-bold text-lg mb-4">Add Your Review</h3>
 
                         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                            {/* Reviewer Name */}
+                           
                             <div>
                                 <label className="label">
                                     <span className="label-text">Your Name</span>
@@ -166,7 +166,7 @@ const PropertyDetails = () => {
                                 />
                             </div>
 
-                            {/* Review Description */}
+
                             <div>
                                 <label className="label">
                                     <span className="label-text">Your Review</span>
@@ -225,12 +225,6 @@ const PropertyDetails = () => {
                                 <div>
                                     <h3 className="font-semibold text-gray-900">{review.reviewerName}</h3>
                                     <div className="flex items-center">
-                                        {/* {[...Array(5)].map((_, i) => (
-                                        <FaStar
-                                          key={i}
-                                          className={`text-sm ${i < review.rating ? 'text-yellow-400' : 'text-gray-300'}`}
-                                        />
-                                      ))} */}
 
                                         {
                                             [...Array(5)].map((k, i) => (

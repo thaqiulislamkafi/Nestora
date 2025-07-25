@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
 import { Bounce, Slide } from 'react-awesome-reveal';
-// import { FaSpinner } from 'react-icons/fa';
 import useAxios from '../../Hooks/useAxios';
 import Loading from '../../SharedElement/Loading';
 import Error from '../../SharedElement/Error';

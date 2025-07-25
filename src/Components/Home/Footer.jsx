@@ -12,7 +12,7 @@ const Footer = () => {
                             <Link to="/" className="flex items-center ">
                                 <div className="">
                                     <img
-                                        src="https://i.postimg.cc/0yHTF6Kn/logo.png" // Replace with your logo path
+                                        src="https://i.postimg.cc/0yHTF6Kn/logo.png" 
                                         alt="App Logo"
                                         className="w-full h-auto"
                                     />

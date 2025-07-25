@@ -20,7 +20,7 @@ const Registration = () => {
     const navigate = useNavigate();
     const [imageUploading, setImageUploading] = useState(false);
 
-    const [fireBaseError, setFirebaseError ] = useState('');
+    const [fireBaseError, setFirebaseError] = useState('');
 
     // const {setCurrentUser} = use(AuthContext) ;
 
@@ -30,7 +30,7 @@ const Registration = () => {
         const file = e.target.files[0];
         if (file) {
             setImage(file);
-
+            setImageUploading(true);
             const formData = new FormData();
             formData.append('image', file);
 
@@ -40,6 +40,8 @@ const Registration = () => {
                     formData
                 );
                 setImageURL(response.data.data.url);
+                setImageUploading(false);
+
             } catch (error) {
                 console.error('Image Upload Failed:', error);
                 Swal.fire('Error', 'Image upload failed. Try again.', 'error');
@@ -94,10 +96,11 @@ const Registration = () => {
         }
         catch (error) {
             console.log(error);
-            Swal.fire({icon: 'error',title: 'Error',text: `${error.message}`,showConfirmButton: false, timer: 1500
+            Swal.fire({
+                icon: 'error', title: 'Error', text: `${error.message}`, showConfirmButton: false, timer: 1500
             });
         }
-        
+
     }
 
     const handleGoogleSignin = () => {
@@ -141,7 +144,7 @@ const Registration = () => {
             <div className="w-full  overflow-hidden shadow-xs">
 
                 <div className="flex flex-col lg:flex-row border border-amber-100 rounded-4xl ">
-                    {/* Registration Form Section */}
+
                     <div className='w-full lg:w-1/2 p-4 py-8 md:p-8 lg:p-12 flex justify-center lg:py-16'>
                         <div className="w-4/6 ">
                             <h2 className="text-3xl font-extrabold text-gray-800 mb-2">Create An Account</h2>
@@ -167,9 +170,12 @@ const Registration = () => {
                                             />
                                         )}
                                     </div>
+                                    {imageUploading && <>
+                                    <p className='text-sm'>Uploading ...</p>
+                                    </>}
                                 </label>
 
-                                {/* Email Field */}
+
                                 <div className="space-y-2">
                                     <label htmlFor="name" className="block text-sm font-bold text-gray-700">
                                         Name
@@ -202,7 +208,7 @@ const Registration = () => {
 
                                 </div>
 
-                                {/* Password Field */}
+
                                 <div className="space-y-2">
                                     <label htmlFor="password" className="block text-sm font-bold text-gray-700">
                                         Password
@@ -220,14 +226,14 @@ const Registration = () => {
 
 
 
-                                {/* Registration Button */}
+
 
                                 <button className="btn w-full bg-[#fceb00] my-2"
                                 >Register </button>
 
                             </form>
 
-                            {/* Divider */}
+
                             <div className="my-4">
                                 <div className="relative">
                                     <div className="absolute inset-0 flex items-center">
@@ -239,12 +245,12 @@ const Registration = () => {
                                 </div>
                             </div>
 
-                            {/* Google Sign In */}
+
                             <div className="mt-2">
                                 <button type="button" onClick={handleGoogleSignin} className="btn w-full"> <FcGoogle size={16} /> Register with Google </button>
                             </div>
 
-                            {/* Register Link */}
+
                             <div className="mt-2 text-center text-sm">
                                 <p className="text-gray-600">
                                     Do you have an account?{' '}
@@ -256,7 +262,7 @@ const Registration = () => {
                         </div>
                     </div>
 
-                    {/* Animation/Illustration Section */}
+
                     <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-[#fceb00] to-[#e6d706]  items-center rounded-l-[150px] justify-center">
 
 

@@ -6,7 +6,7 @@ import UseUserRole from '../Hooks/useUserRole';
 import { signOut } from 'firebase/auth';
 import { auth } from '../Firebase/authentication';
 import Swal from 'sweetalert2';
-// import UseUserRole from '../Hooks/UseUserRole';
+
 
 const NavSideBar = () => {
 
@@ -32,25 +32,6 @@ const NavSideBar = () => {
     return (
         <div className="h-full flex flex-col w-full ">
 
-            {/* User Profile Section  */}
-            {/* <div className="flex items-center  ">
-                <div className="">
-                    <div className="w-12 rounded-full">
-                        <img className='rounded-full' src={currentUser.photoURL} alt="Profile" />
-                    </div>
-                </div>
-                <div>
-                    <h3 className="font-semibold">{currentUser.displayName}</h3>
-                    <p className="text-sm text-gray-500">{currentUser.email}</p>
-                </div>
-                <button 
-                    onClick={() => navigate('/')}
-                    className="ml-auto btn btn-ghost btn-sm"
-                >
-                    <FaHome className="text-lg" />
-                </button>
-            </div> */}
-
             <div className="navbar-start relative w-3/4 ">
                 <NavLink to="/" className="flex items-center mx-auto mt-2">
                     <div className="">
@@ -66,7 +47,7 @@ const NavSideBar = () => {
 
             <div className='divider my-2'></div>
 
-            {/* Navigation Links */}
+            {/* Common Navigation Links */}
 
             <div className="flex-1 px-7 space-y-2 ">
                 <NavLink
@@ -272,7 +253,6 @@ const NavSideBar = () => {
 
             <div className='divider my-0'></div>
 
-            {/* Logout Button */}
             <div className="px-7 my-2">
                 <button
                     onClick={handleLogout}

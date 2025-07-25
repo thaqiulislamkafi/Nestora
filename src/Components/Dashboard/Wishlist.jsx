@@ -69,7 +69,9 @@ const Wishlist = () => {
                 {wishlist.map((property) => (
                     <Fade key={property._id} cascade damping={0.9} triggerOnce>
                         <div className="shadow-xs border-l border-[#fceb00] shadow-[#fceb00] rounded-xl overflow-hidden hover:shadow-md transition-shadow duration-300 inter-font">
+
                             {/* Property Image */}
+
                             <div className="relative h-40 overflow-hidden rounded-t-xl">
                                 <img
                                     src={property.image}
@@ -84,6 +86,7 @@ const Wishlist = () => {
                             </div>
 
                             {/* Property Details */}
+
                             <div className="p-4">
                                 <div className="flex gap-1.5 items-center mb-2">
                                     <h3 className="text-lg font-bold text-gray-800 line-clamp-1">{property.title}</h3>
@@ -107,6 +110,7 @@ const Wishlist = () => {
                                 </div>
 
                                 {/* Action Buttons */}
+                                
                                 <div className="flex justify-between mt-4">
                                     <button
                                         onClick={() => handleReject(property._id)}
@@ -114,12 +118,23 @@ const Wishlist = () => {
                                     >
                                         <FaTimes /> Remove
                                     </button>
-                                    <button
-                                        onClick={() => handleMakeOffer(property._id)}
-                                        className="btn btn-sm   rounded-lg"
-                                    >
-                                        <FaHandshake /> Offer
-                                    </button>
+                                    {
+                                        property.isBought ?
+                                            <button
+                                                disabled={true}
+                                                className="btn btn-sm   rounded-lg"
+                                            >
+                                             Already Bought
+                                            </button>
+                                            :
+                                            <button
+                                            
+                                                onClick={() => handleMakeOffer(property._id)}
+                                                className="btn btn-sm   rounded-lg"
+                                            >
+                                                <FaHandshake /> Offer
+                                            </button>
+                                    }
                                 </div>
                             </div>
                         </div>

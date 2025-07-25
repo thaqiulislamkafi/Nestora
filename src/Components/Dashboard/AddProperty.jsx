@@ -144,6 +144,7 @@ const AddProperty = () => {
 
 
                             {/* Image Upload */}
+
                             <div className="form-group">
                                 <label className=" text-sm font-medium text-gray-700 mb-1 flex justify-center">
                                     Property Image
@@ -196,6 +197,7 @@ const AddProperty = () => {
 
 
                                 {/* Property Title */}
+
                                 <div className="form-group">
                                     <label className=" text-sm font-medium text-gray-700 mb-1 flex items-center">
                                         <FaHome className="mr-2" /> Property Title
@@ -209,7 +211,8 @@ const AddProperty = () => {
                                     )}
                                 </div>
 
-                                {/* Property Location */}
+                                 {/* Property Location  */}
+
                                 <div className="form-group">
                                     <label className=" text-sm font-medium text-gray-700 mb-1 flex items-center">
                                         <FaMapMarkerAlt className="mr-2" /> Property Location
@@ -224,7 +227,8 @@ const AddProperty = () => {
                                 </div>
 
 
-                                {/* Agent Name (readonly) */}
+                                {/* Agent Name */}
+                                
                                 <div className="form-group">
                                     <label className=" text-sm font-medium text-gray-700 mb-1 flex items-center">
                                         <FaUserTie className="mr-2" /> Agent Name
@@ -235,7 +239,7 @@ const AddProperty = () => {
                                     />
                                 </div>
 
-                                {/* Agent Email (readonly) */}
+                                {/* Agent Email */}
                                 <div className="form-group">
                                     <label className=" text-sm font-medium text-gray-700 mb-1 flex items-center">
                                         <FaEnvelope className="mr-2" /> Agent Email
@@ -247,6 +251,7 @@ const AddProperty = () => {
                                 </div>
 
                                 {/* Price Range */}
+                                
                                 <div className="form-group md:col-span-2">
                                     <label className=" text-sm font-medium text-gray-700 mb-1">
                                         ৳ Price Range

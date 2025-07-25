@@ -9,7 +9,9 @@ const Card = ({ value, title }) => {
   return (
     <Fade cascade damping={0.1} triggerOnce>
       <div className="shadow-xs border-l border-[#fceb00] shadow-[#fceb00] rounded-xl overflow-hidden  hover:shadow-md transition-shadow duration-300 inter-font md:p-6">
+
         {/* Property Image */}
+
         <div className="relative h-48 overflow-hidden rounded-xl">
           <img
             src={ad.image}
@@ -24,6 +26,7 @@ const Card = ({ value, title }) => {
         </div>
 
         {/* Property Details */}
+
         <div className="p-4">
           <div className="flex gap-1.5 items-center mb-2">
             <h3 className="text-xl font-bold text-gray-800 line-clamp-1">{ad.title}</h3>
@@ -52,8 +55,6 @@ const Card = ({ value, title }) => {
           </div>
 
           <Link to={`/propertyDetails/${ad._id}`} className='btn btn-sm rounded-2xl'>View Details</Link>
-
-          {/* Agent Info */}
 
         </div>
       </div>

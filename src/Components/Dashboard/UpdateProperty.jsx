@@ -121,8 +121,6 @@ const PropertyUpdateForm = () => {
 
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
 
-                        {/* Property Image */}
-
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text flex items-center">
@@ -155,7 +153,6 @@ const PropertyUpdateForm = () => {
                             </div>
                         </div>
 
-                        {/* Property Title */}
 
                         <div className='grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3'>
 
@@ -185,7 +182,7 @@ const PropertyUpdateForm = () => {
                                 )}
                             </div>
 
-                            {/* Property Location */}
+                           
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text flex items-center">
@@ -207,7 +204,7 @@ const PropertyUpdateForm = () => {
                                 )}
                             </div>
 
-                            {/* Price Range */}
+                            
                             <div className="form-control md:col-span-2">
                                 <label className="label">
                                     <span className="label-text flex items-center">
@@ -231,7 +228,7 @@ const PropertyUpdateForm = () => {
                             </div>
                         </div>
 
-                        {/* Agent Info (readonly) */}
+                        
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text my-2">Agent Information</span>
@@ -250,7 +247,7 @@ const PropertyUpdateForm = () => {
                             </div>
                         </div>
 
-                        {/* Action Buttons */}
+        
                         <div className="flex flex-col sm:flex-row justify-end gap-3 pt-6">
 
                             <button

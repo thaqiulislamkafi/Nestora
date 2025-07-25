@@ -8,7 +8,6 @@ import { useNavigate, useParams } from 'react-router';
 import Loading from '../SharedElement/Loading';
 import { AuthContext } from '../Provider/AuthProvider';
 
-// Load Stripe
 const stripePromise = loadStripe(`${import.meta.env.VITE_REACT_APP_STRIP_KEY}`);
 
 const Payment = () => {

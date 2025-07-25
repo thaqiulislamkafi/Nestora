@@ -11,9 +11,6 @@ import { Link } from 'react-router';
 const splitPrice = (priceRange)=>{
   const [min, max] = priceRange.replace(/[^\d-]/g, '').split('-');
   return [min, max];
-      // setMinPrice(prices[0]);
-      // setMaxPrice(prices[1]);
-      // return [prices[0],prices[1]] ;
 }
 
 const AddedProperties = () => {
@@ -86,6 +83,7 @@ const AddedProperties = () => {
             className=" dark:bg-gray-800 rounded-xl shadow-xs overflow-hidden transition-all hover:shadow-lg shadow-amber-300"
           >
             <div className="flex flex-col border-b border-[#e6d70c] md:flex-row h-full  ">
+
               {/* Property Image */}
               <div className="  bg-transparent lg:p-4 rounded-xl lg:w-[29.13vw] h-auto">
                 <img
@@ -96,6 +94,7 @@ const AddedProperties = () => {
               </div>
 
               {/* Property Details */}
+
               <div className="p-4 text-gray-700 dark:text-gray-200 flex-1 flex flex-col">
                 <div>
                   <p className="poppins my-2 text-xl lg:text-2xl font-bold">

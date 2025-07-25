@@ -76,14 +76,14 @@ const Login = () => {
             <div className="w-full  overflow-hidden shadow-xs ">
 
                 <div className="flex flex-col lg:flex-row border border-amber-100 rounded-4xl ">
-                    {/* Login Form Section */}
+
                     <div className='w-full lg:w-1/2 p-4 py-8 md:p-8 lg:p-12  flex justify-center lg:py-16 '>
                         <div className="w-4/6 ">
                             <h2 className="text-3xl font-extrabold text-gray-800 mb-2">Welcome Back</h2>
                             <p className="text-gray-600 mb-8">Log in to your account to continue</p>
 
                             <form onSubmit={handleSubmit(onSubmit)} className="space-y-2 ">
-                                {/* Email Field */}
+                               
                                 <div className="space-y-2">
                                     <label htmlFor="email" className="block text-sm font-bold text-gray-700">
                                         Email
@@ -97,7 +97,7 @@ const Login = () => {
 
                                 </div>
 
-                                {/* Password Field */}
+                               
                                 <div className="space-y-2">
                                     <label htmlFor="password" className="block text-sm font-bold text-gray-700">
                                         Password
@@ -113,7 +113,7 @@ const Login = () => {
                                     </div>
                                 </div>
 
-                                {/* Remember Me & Forgot Password */}
+                                
                                 <div className="flex items-center justify-between">
 
                                     <div className="text-sm">
@@ -123,14 +123,14 @@ const Login = () => {
                                     </div>
                                 </div>
 
-                                {/* Login Button */}
+                                
 
                                 <button className="btn w-full bg-[#fceb00]"
                                 > Sign in </button>
 
                             </form>
 
-                            {/* Divider */}
+                            
                             <div className="my-4">
                                 <div className="relative">
                                     <div className="absolute inset-0 flex items-center">
@@ -142,12 +142,12 @@ const Login = () => {
                                 </div>
                             </div>
 
-                            {/* Google Sign In */}
+                            
                             <div className="mt-2">
                                 <button type="button" onClick={handleGoogleSignin} className="btn w-full"> <FcGoogle size={16} /> Sign in with Google </button>
                             </div>
 
-                            {/* Register Link */}
+                            
                             <div className="mt-2 text-center text-sm">
                                 <p className="text-gray-600">
                                     Don't have an account?{' '}
@@ -159,7 +159,7 @@ const Login = () => {
                         </div>
                     </div>
 
-                    {/* Animation/Illustration Section */}
+                    
                     <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-[#fceb00] to-[#e6d706]  items-center rounded-l-[150px] justify-center">
 
 

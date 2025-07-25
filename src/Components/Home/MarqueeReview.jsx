@@ -12,44 +12,7 @@ const MarqueeReview = () => {
 
   const axiosSecure = useAxios() ;
 
-  // Sample review data - you'll replace this with data from your API
-  // const reviews = [
-  //   {
-  //     id: 1,
-  //     reviewerName: "John Doe",
-  //     reviewText: "Absolutely loved the property! The location was perfect and the amenities were top-notch.",
-  //     propertyTitle: "Luxury Apartment in Downtown",
-  //     rating: 5,
-  //   },
-  //   {
-  //     id: 2,
-  //     reviewerName: "Sarah Smith",
-  //     reviewText: "Great experience with Nestora. Found my dream home quickly and the process was smooth.",
-  //     propertyTitle: "Modern Villa with Ocean View",
-  //     rating: 4,
-  //   },
-  //   {
-  //     id: 3,
-  //     reviewerName: "Michael Johnson",
-  //     reviewText: "The team was very professional and helped me find exactly what I was looking for.",
-  //     propertyTitle: "Cozy Studio in the City Center",
-  //     rating: 5,
-  //   },
-  //   {
-  //     id: 4,
-  //     reviewerName: "Emily Wilson",
-  //     reviewText: "Excellent service and beautiful properties to choose from. Highly recommend!",
-  //     propertyTitle: "Spacious Family Home",
-  //     rating: 5,
-  //   },
-  //   {
-  //     id: 5,
-  //     reviewerName: "David Brown",
-  //     reviewText: "The property exceeded my expectations. Everything was as described and more.",
-  //     propertyTitle: "Penthouse with Rooftop Garden",
-  //     rating: 4,
-  //   },
-  // ];
+
 
   const { data : reviews, isLoading,error } =  useQuery({
     queryKey : ['reviews'],
@@ -98,12 +61,6 @@ const MarqueeReview = () => {
                   <div>
                     <h3 className="font-semibold text-gray-900">{index+1}. {review.reviewerName}</h3>
                     <div className="flex items-center">
-                      {/* {[...Array(5)].map((_, i) => (
-                        <FaStar
-                          key={i}
-                          className={`text-sm ${i < review.rating ? 'text-yellow-400' : 'text-gray-300'}`}
-                        />
-                      ))} */}
 
                       {
                         [...Array(5)].map((k,i)=> (

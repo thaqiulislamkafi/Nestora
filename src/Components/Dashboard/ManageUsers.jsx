@@ -121,8 +121,6 @@ return (
               </td>
               <td>{user.userEmail}</td>
               <td className="capitalize">{user.isfraud ? 'Fraud' : user.role}</td>
-
-              {/* Make Admin */}
               <td>
                 {!user.isfraud && user.role !== 'admin' && (
                   <button
@@ -133,8 +131,6 @@ return (
                   </button>
                 )}
               </td>
-
-              {/* Make Agent */}
               <td>
                 {!user.isfraud && user.role !== 'agent' && (
                   <button
@@ -145,8 +141,6 @@ return (
                   </button>
                 )}
               </td>
-
-              {/* Mark Fraud */}
               <td>
                 {user.role === 'agent' && !user.isfraud && (
                   <button
@@ -157,8 +151,6 @@ return (
                   </button>
                 )}
               </td>
-
-              {/* Delete */}
               <td>
                 <button
                   onClick={() =>
@@ -176,7 +168,6 @@ return (
           ))}
         </tbody>
       </table>
-
 
     </div>
   </div>
