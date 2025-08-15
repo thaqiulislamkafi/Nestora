@@ -66,7 +66,7 @@ const BeAnAgent = () => {
     <div className='py-20'>
       <div className="min-h-screen bg-white rounded-3xl inter-font">
         <div className="overflow-hidden px-6">
-          {/* Title */}
+       
           <div className="mb-8">
             <h1 className="text-2xl lg:text-5xl font-extrabold text-gray-800 mb-2">
               Be an Agent
@@ -76,18 +76,18 @@ const BeAnAgent = () => {
             </p>
           </div>
 
-          {/* Divider */}
+    
           <div className="divider my-12"></div>
 
-          {/* Form Section */}
+       
           <div className="flex flex-col lg:flex-row gap-8">
-            {/* Left Section */}
+      
             <div className="flex-1">
               <h2 className="text-2xl font-bold text-gray-800 mb-6">Tell us about yourself</h2>
 
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                 <div className='grid grid-cols-1 lg:grid-cols-2 gap-5'>
-                  {/* Name */}
+          
                   <div className="form-control space-y-2">
                     <label className="label">
                       <span className="label-text font-semibold">Your Name</span>
