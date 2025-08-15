@@ -88,7 +88,7 @@ const Navbar = () => {
                     </li>
 
                     <li>
-                        <NavLink to="/beArider" style={navLinkStyle}>
+                        <NavLink to="/be-an-agent" style={navLinkStyle}>
                             Be a Agent
                         </NavLink>
                     </li>

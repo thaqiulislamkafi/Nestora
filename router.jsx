@@ -28,6 +28,8 @@ import Payment from "./src/Components/Dashboard/Payment";
 import MySoldProperties from "./src/Components/Dashboard/MySoldProperties";
 import PrivateRoute from "./src/Components/Route/PrivateRoute";
 import Loading from "./src/Components/SharedElement/Loading";
+import BeAnAgent from "./src/Components/Home/BeAnAgent";
+import AboutUs from "./src/Components/Home/AboutUs";
 
 
 
@@ -53,6 +55,14 @@ export const router = createBrowserRouter([
                 path: '/propertyDetails/:propertyId',
                 element: <PrivateRoute><PropertyDetails /></PrivateRoute>
             },
+            {
+                path : 'be-an-agent',
+                element : <BeAnAgent/>
+            },
+            {
+                path : 'about',
+                element : <AboutUs/>
+            }
 
 
         ]
