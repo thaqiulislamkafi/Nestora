@@ -2,6 +2,7 @@ import React from "react";
 import { FaBuilding, FaUserTie, FaSmile, FaUsers } from "react-icons/fa";
 
 const Experience = () => {
+  
   return (
     <div className="max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-2 gap-12 items-center inter-font">
       {/* Left Side */}
