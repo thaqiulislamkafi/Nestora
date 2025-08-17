@@ -6,6 +6,7 @@ import {
   FaHouseUser
 } from 'react-icons/fa';
 import UseUserRole from '../Hooks/useUserRole';
+import { MdDashboard } from 'react-icons/md';
 
 const BreadcrumbsNav = () => {
 //   const { currentUser } = useAuth();
@@ -18,7 +19,7 @@ const BreadcrumbsNav = () => {
   ];
 
   const userLinks = [
-    { to: '/dashboard/payment-history', label: 'Payment History', icon: <FaTasks /> },
+    { to: '/dashboard/user-dashboard', label: 'Dashboard', icon: <MdDashboard /> },
     { to: '/dashboard/wishlist', label: 'Wishlist', icon: <FaHeart /> },
     { to: '/dashboard/property-bought', label: 'Bought Properties', icon: <FaHome /> },
     { to: '/dashboard/my-reviews', label: 'My Reviews', icon: <FaStar /> },

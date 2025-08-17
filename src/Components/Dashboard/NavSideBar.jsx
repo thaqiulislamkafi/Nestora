@@ -83,8 +83,7 @@ const NavSideBar = () => {
                             <span>Dashboard</span>
                         </NavLink>
 
-
-                        <NavLink
+                        {/* <NavLink
                             to="/dashboard/payment-history"
                             className={({ isActive }) =>
                                 `flex items-center p-3 rounded-lg transition-colors ${isActive
@@ -94,7 +93,7 @@ const NavSideBar = () => {
                         >
                             <FaHistory className="mr-3" />
                             <span>Payment History</span>
-                        </NavLink>
+                        </NavLink> */}
 
                         <NavLink
                             to="/dashboard/wishlist"

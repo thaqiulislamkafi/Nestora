@@ -20,7 +20,7 @@ const Contact = () => {
         <div className="space-y-6">
 
           <div className="flex items-center space-x-6 shadow-sm p-6 rounded-xl hover:shadow-lg transition-all border-l border-[#fceb00] duration-500">
-            <FaEnvelope className="text-blue-600 text-4xl" />
+            <FaEnvelope className="text-gray-800 text-4xl" />
             <div>
               <p className="font-bold text-xl text-gray-800">Email</p>
               <p className="text-gray-600 text-lg">contact@realestate.com</p>

@@ -8,7 +8,7 @@ const Experience = () => {
       {/* Left Side */}
       <div>
         <h1 className="text-4xl md:text-5xl font-extrabold text-gray-800 ">
-          More Than <span className="text-blue-600">2 Years</span> Experience
+          More Than <span className="text-[#03373D]">2 Years</span> Experience
         </h1>
         <p className="mt-6 text-lg text-gray-600 max-w-lg">
           With over two years of dedicated service in the real estate industry, 
@@ -22,8 +22,8 @@ const Experience = () => {
 
       <div className="grid grid-cols-2 gap-8">
         {/* Card 1 */}
-        <div className="bg-white shadow-lg rounded-2xl py-6 flex flex-col items-center hover:shadow-2xl transition-all border-t-4 border-blue-500">
-          <FaBuilding className="text-blue-600 text-4xl mb-4" />
+        <div className="bg-white shadow-lg rounded-2xl py-6 flex flex-col items-center hover:shadow-2xl transition-all border-t-4 border-[#03373D]">
+          <FaBuilding className="text-[#03373D] text-4xl mb-4" />
           <h2 className="text-3xl font-bold text-gray-800">120+</h2>
           <p className=" text-gray-600 font-medium mt-2">Properties Sold</p>
         </div>

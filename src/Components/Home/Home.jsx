@@ -5,10 +5,15 @@ import Footer from './Footer';
 
 const Home = () => {
     return (
-        <div className='w-[87.94vw] mx-auto '>
+        <div className=''>
+           
             <Navbar/>
-            <Outlet/>
-            <Footer/>
+          
+           <div className='w-[87.94vw] mx-auto '>
+           <Outlet/>
+           <Footer/>
+           </div>
+            
         </div>
     );
 };
