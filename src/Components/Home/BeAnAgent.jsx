@@ -45,21 +45,14 @@ const BeAnAgent = () => {
       status: 'pending',
       created_at: new Date().toISOString().split('T')[0]
     };
-
-    axiosSecure.post('/agents', agentData)
-      .then(res => {
-        if (res.data.insertedId) {
+    
           Swal.fire({
             title: 'Be an Agent!',
             text: 'Your Request is Pending.',
             icon: 'success',
             confirmButtonColor: '#CAEB66'
           });
-        }
-      })
-      .catch(error => {
-        console.error(error);
-      });
+    
   };
 
   return (

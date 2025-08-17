@@ -30,6 +30,7 @@ import PrivateRoute from "./src/Components/Route/PrivateRoute";
 import Loading from "./src/Components/SharedElement/Loading";
 import BeAnAgent from "./src/Components/Home/BeAnAgent";
 import AboutUs from "./src/Components/Home/AboutUs";
+import UserDashboard from "./src/Components/Dashboard/UserDashboard";
 
 
 
@@ -140,6 +141,10 @@ export const router = createBrowserRouter([
                 path: 'advertiseProperty',
                 element: <AdminRoute><AdvertiseProperty /></AdminRoute>
             },
+            {
+                path : 'user-dashboard',
+                element : <UserDashboard/>
+            }
         ]
     },
     {

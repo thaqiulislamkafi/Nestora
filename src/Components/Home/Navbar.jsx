@@ -76,11 +76,11 @@ const Navbar = () => {
                             All Properties
                         </NavLink>
                     </li>
-                    <li>
+                    {/* <li>
                         <NavLink to="/coverage" style={navLinkStyle}>
                             Coverage
                         </NavLink>
-                    </li>
+                    </li> */}
                     <li>
                         <NavLink to="/about" style={navLinkStyle}>
                             About Us

@@ -1,11 +1,12 @@
 import React, { use } from 'react';
 import { NavLink, useNavigate } from 'react-router';
-import { FaHome, FaHistory, FaSignOutAlt, FaBoxOpen, FaUser, FaHeart, FaStar, FaPlusCircle, FaCheckCircle, FaHandshake, FaTasks, FaUsersCog, FaStarHalfAlt, FaBullhorn, } from 'react-icons/fa';
+import { FaHome, FaHistory, FaSignOutAlt, FaBoxOpen, FaUser, FaHeart, FaStar, FaPlusCircle, FaCheckCircle, FaHandshake, FaTasks, FaUsersCog, FaStarHalfAlt, FaBullhorn, FaTachometerAlt, } from 'react-icons/fa';
 import { AuthContext } from '../Provider/AuthProvider';
 import UseUserRole from '../Hooks/useUserRole';
 import { signOut } from 'firebase/auth';
 import { auth } from '../Firebase/authentication';
 import Swal from 'sweetalert2';
+import { MdDashboard } from "react-icons/md";
 
 
 const NavSideBar = () => {
@@ -16,18 +17,18 @@ const NavSideBar = () => {
 
 
     const handleLogout = async () => {
-            try {
-                await signOut(auth);
-                Swal.fire({
-                    icon: 'success', title: 'Sign Out', text: 'User Signed Out', showConfirmButton: false, timer: 1500
-                });
-                navigate('/') ;
-    
-    
-            } catch (error) {
-                console.error('Error signing out:', error.message);
-            }
-        };
+        try {
+            await signOut(auth);
+            Swal.fire({
+                icon: 'success', title: 'Sign Out', text: 'User Signed Out', showConfirmButton: false, timer: 1500
+            });
+            navigate('/');
+
+
+        } catch (error) {
+            console.error('Error signing out:', error.message);
+        }
+    };
 
     return (
         <div className="h-full flex flex-col w-full ">
@@ -60,7 +61,7 @@ const NavSideBar = () => {
                     }
                 >
                     <FaUser className="mr-3" />
-                    <span>My {role=='agent' ? 'Agent' : role=='admin' ? 'Admin' : ''} Profile</span>
+                    <span>My {role == 'agent' ? 'Agent' : role == 'admin' ? 'Admin' : ''} Profile</span>
                 </NavLink>
 
                 {/* Navigation Links for user*/}
@@ -68,6 +69,20 @@ const NavSideBar = () => {
                 {
                     (role === 'user') &&
                     <>
+
+                        <NavLink
+                            to="/dashboard/user-dashboard"
+                            className={({ isActive }) =>
+                                `flex items-center p-3 rounded-lg transition-colors ${isActive
+                                    ? 'bg-[#fceb00] text-gray-900 font-medium'
+                                    : 'hover:bg-gray-100 text-gray-700'
+                                }`
+                            }
+                        >
+                            <MdDashboard className="mr-3" />
+                            <span>Dashboard</span>
+                        </NavLink>
+
 
                         <NavLink
                             to="/dashboard/payment-history"
