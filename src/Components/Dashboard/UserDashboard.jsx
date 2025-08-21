@@ -33,7 +33,7 @@ const UserDashboard = () => {
     },
     {
       title: 'Total Bought Amount',
-      value: `৳${dashboardData?.stats?.totalBoughtAmount.toLocaleString()}`,
+      value: `৳ ${dashboardData?.stats?.totalBoughtAmount.toLocaleString()}`,
       icon: <FaDollarSign className="text-2xl" color='red' />,
       color: 'bg-gray-100 border-t-4 border-red-600 font-semibold'
     },

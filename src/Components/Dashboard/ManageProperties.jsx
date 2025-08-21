@@ -62,69 +62,69 @@ const ManageProperties = () => {
   } />
 
   return (
-    <div className="p-6">
-
-
-      <div className="overflow-x-auto rounded-xl shadow  min-w-6xl">
-        <h1 className="text-2xl lg:text-3xl font-bold text-center mb-10">Manage Properties</h1>
-        <table className="table table-zebra">
-          <thead className="bg-[#fceb00] text-gray-800">
-            <tr>
-              <th>#</th>
-              <th>Title</th>
-              <th>Location</th>
-              <th>Agent Name</th>
-              <th>Agent Email</th>
-              <th>Price Range</th>
-              <th>Status</th>
-              <th className="text-center">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {properties.map((property, index) => (
-              <tr key={property._id}>
-                <td >{index + 1}</td>
-                <td>{property.title}</td>
-                <td>{property.location}</td>
-                <td>{property.agentName}</td>
-                <td>{property.agentEmail}</td>
-                <td>{property.priceRange}</td>
-                <td>
-                  {property.verified ? (
-                    <span className="badge badge-success">Verified</span>
-                  ) : property.status == 'rejected' ? (
-                    <span className="badge badge-error">Rejected</span>
-                  ) : (
-                    <span className="badge badge-warning">Pending</span>
-                  )}
-                </td>
-                <td className="flex gap-2 justify-center">
-                  {!property.verified && property.status !== 'rejected' && (
-                    <>
-                      <button
-                        onClick={() => handleVerify(property._id)}
-                        className="btn btn-success btn-xs"
-                      >
-                        <FaCheckCircle /> Verify
-                      </button>
-                      <button
-                        onClick={() => handleReject(property._id)}
-                        className="btn btn-error btn-xs"
-                      >
-                        <FaTimesCircle /> Reject
-                      </button>
-                    </>
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        {isLoading && <div className="text-center py-4 text-gray-500">Loading...</div>}
-        {!isLoading && properties.length === 0 && (
-          <div className="text-center py-4 text-gray-500">No properties found.</div>
-        )}
+    <div className="p-5">
+      <div className="card bg-base-100 shadow-xl rounded-xl">
+        <div className="card-body">
+          <h2 className="card-title my-2">Manage Properties</h2>
+          <div className="overflow-x-auto">
+            <table className="table table-zebra w-full">
+              <thead className=" text-gray-800">
+                <tr>
+                  <th></th> 
+                  <th>Title</th>
+                  <th>Agent Name</th>
+                  <th>Agent Email</th>
+                  <th>Price Range</th>
+                  <th>Status</th>
+                  <th className="text-center">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {properties.map((property, index) => (
+                  <tr key={property._id}>
+                    <td>{index + 1}</td>
+                    <td>{property.title}</td>
+                    <td>{property.agentName}</td>
+                    <td>{property.agentEmail}</td>
+                    <td>{property.priceRange}</td>
+                    <td>
+                      {property.verified ? (
+                        <span className="badge badge-success">Verified</span>
+                      ) : property.status === 'rejected' ? (
+                        <span className="badge badge-error">Rejected</span>
+                      ) : (
+                        <span className="badge badge-warning">Pending</span>
+                      )}
+                    </td>
+                    <td className="flex gap-2 justify-center">
+                      {!property.verified && property.status !== 'rejected' && (
+                        <>
+                          <button
+                            onClick={() => handleVerify(property._id)}
+                            className="btn btn-xs bg-green-500 text-white hover:bg-green-600"
+                          >
+                            <FaCheckCircle /> Verify
+                          </button>
+                          <button
+                            onClick={() => handleReject(property._id)}
+                            className="btn btn-xs bg-red-500 text-white hover:bg-red-600"
+                          >
+                            <FaTimesCircle /> Reject
+                          </button>
+                        </>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            {!isLoading && properties.length === 0 && (
+              <div className="text-center py-4 text-gray-500">No properties found.</div>
+            )} 
+          </div>
+        </div>
       </div>
+
     </div>
   );
 };

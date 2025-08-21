@@ -5,9 +5,10 @@ const Contact = () => {
   return (
     <div className="max-w-7xl mx-auto px-6 py-10 inter-font mb-40">
       {/* Title */}
-      <h1 className="text-4xl font-extrabold text-gray-800 text-center mb-4">
+      <h1 className="text-4xl font-extrabold text-gray-800 text-center ">
         Let’s Touch In
       </h1>
+      <div className="w-40 h-1 bg-[#fceb00] mx-auto rounded-full my-3"></div>
       <p className="text-lg text-gray-600 text-center max-w-2xl mx-auto mb-16">
         Whether you're buying, selling, or just exploring your real estate
         options — our team is here to guide you every step of the way.

@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 
 const Navbar = () => {
 
+    const {darkMode,setDarkMode} = use(AuthContext) ;
 
     const navLinkStyle = ({ isActive }) => {
         return {
@@ -44,7 +45,11 @@ const Navbar = () => {
     };
 
     const time = new Date().toLocaleTimeString();
-    console.log(time)
+    console.log(time) ;
+
+    const handleDarkMode = ()=>{
+        setDarkMode(!darkMode) ;
+    }
 
     return (
         <div className="bg-white/60 lg:backdrop-blur-3xl lg:sticky lg:top-0 z-50 py-2 ">
@@ -98,7 +103,6 @@ const Navbar = () => {
 
 
                 <div className="navbar-end gap-2">
-
                     {
                         currentUser ?
                             <div className="flex items-center gap-1">

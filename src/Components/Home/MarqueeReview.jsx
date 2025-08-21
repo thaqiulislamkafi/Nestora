@@ -32,8 +32,8 @@ const MarqueeReview = () => {
     <Bounce cascade damping={0.09} triggerOnce>
       <div className=" py-12 px-4 sm:px-6 lg:px-8 my-30">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-2xl lg:text-4xl font-bold text-center mb-8 text-gray-900 inter-font">What Our Clients Say</h2>
-
+          <h2 className="text-2xl lg:text-4xl font-bold text-center mb-3 text-gray-900 inter-font">What Our Clients Say</h2>
+          <div className="w-50 h-1 bg-[#fceb00] mx-auto rounded-full my-2"></div>
           <Marquee
             speed={20}
             gradient={false}

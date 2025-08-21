@@ -24,6 +24,7 @@ const AllProperties = () => {
 
     return (
         <section className="py-12 px-4 sm:px-6 lg:px-8 lg:min-h-700px">
+
             <div className="max-w-7xl mx-auto">
                 <Slide direction="down" triggerOnce>
                     <div className="text-center mb-12 inter-font">

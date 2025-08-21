@@ -11,6 +11,7 @@ const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [darkMode,setDarkMode] = useState(false) ;
 
   useEffect(() => {
    
@@ -31,7 +32,9 @@ const AuthProvider = ({ children }) => {
     setCurrentUser,
     loading,
     isModalOpen, 
-    setIsModalOpen
+    setIsModalOpen,
+    darkMode,
+    setDarkMode
 
   };
 

@@ -7,12 +7,14 @@ const Experience = () => {
     <div className="max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-2 gap-12 items-center inter-font">
       {/* Left Side */}
       <div>
-        <h1 className="text-4xl md:text-5xl font-extrabold text-gray-800 ">
-          More Than <span className="text-[#03373D]">2 Years</span> Experience
+        <h1 className="text-4xl md:text-5xl font-extrabold text-gray-800 leading-tight">
+          More Than <span className="text-[#03373D] ">2 Years</span> Experience
         </h1>
+        <div className="w-45 h-1 bg-[#fceb00] rounded-full mt-5 my-2"></div>
         <p className="mt-6 text-lg text-gray-600 max-w-lg">
           With over two years of dedicated service in the real estate industry, 
-          we’ve built a reputation for **trust, excellence, and results**. 
+          we’ve built a reputation for <span className="text-gray-800 font-bold">trust</span>, 
+          <span className="text-gray-800 font-bold">excellence</span>, and <span className="text-gray-800 font-bold">results</span> . 
           Our expert agents and strong network ensure you find or sell your 
           property with ease and confidence.
         </p>

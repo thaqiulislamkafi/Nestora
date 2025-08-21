@@ -8,13 +8,13 @@ import { auth } from '../Firebase/authentication';
 
 
 
-export const axiosSecure = axios.create({
-    baseURL : `http://localhost:5000`
-})
-
 // export const axiosSecure = axios.create({
-//     baseURL : `https://assignment-12serversite.vercel.app`, 
-// })
+//     baseURL : `http://localhost:5000`
+// }) 
+
+export const axiosSecure = axios.create({
+    baseURL : `https://assignment-12serversite.vercel.app`, 
+})
 
 const useAxios = ()=>{
 

@@ -80,7 +80,8 @@ const FAQ = () => {
       {/* Title */}
       <h1 className="text-4xl font-bold text-center text-gray-800 mb-3">
         Frequently Asked Questions
-      </h1>
+      </h1> 
+      <div className="w-60 h-1 bg-[#fceb00] mx-auto rounded-full my-2 mb-3"></div>
       <p className="text-center text-lg text-gray-500 mb-18">
         Find detailed answers to common questions about our real estate
         services.

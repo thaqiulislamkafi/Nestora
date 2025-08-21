@@ -45,7 +45,8 @@ const Services = () => {
     <section className="py-30 bg-[#03373D] rounded-2xl my-30">
       <div className="container mx-auto px-6 lg:px-20  text-center">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-100">Our Services</h2>
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-100">Our Services</h2> 
+          <div className="w-35 h-1 bg-[#fceb00] mx-auto rounded-full my-2"></div>
           <p className="mt-4 text-lg text-gray-100 max-w-3xl mx-auto">
             Nestora simplifies your journey to buy or sell property — offering verified listings, expert agent help, and full legal support.
           </p>

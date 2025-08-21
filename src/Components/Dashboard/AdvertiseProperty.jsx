@@ -36,12 +36,12 @@ const AdvertiseProperty = () => {
   if(error) return <Error message={error.message}/>
 
   return (
-    <div className="px-6 py-8">
-      <h2 className="text-2xl lg:text-3xl font-bold text-center mb-10">Advertise Property</h2>
-
-      <div className="overflow-x-auto ">
+    <div className="card bg-base-100 shadow-xl rounded-xl p-5">
+    <div className="card-body">
+      <h2 className="card-title my-2">Advertise Property</h2>
+      <div className="overflow-x-auto">
         <table className="table table-zebra w-full">
-          <thead className="bg-[#fceb00] text-gray-900 text-base">
+          <thead className=" text-gray-900 text-base">
             <tr>
               <th>Image</th>
               <th>Title</th>
@@ -68,7 +68,7 @@ const AdvertiseProperty = () => {
                   <td>
                     <button
                       onClick={() => advertiseProperty(property._id)}
-                      className="btn btn-sm bg-[#fceb00] text-gray-900 rounded-xl"
+                      className="btn btn-sm bg-[#fceb00] text-gray-900 rounded-xl hover:bg-yellow-500"
                     >
                       Advertise
                     </button>
@@ -79,6 +79,8 @@ const AdvertiseProperty = () => {
         </table>
       </div>
     </div>
+  </div>
+  
   );
 };
 
